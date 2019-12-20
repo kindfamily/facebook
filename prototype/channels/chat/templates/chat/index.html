@@ -1,0 +1,42 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Rooms</title>
+</head>
+<body>
+
+    <div class="content">
+
+
+        What chat room would you like to enter?<br/>
+        <input id="room-name-input" type="button" value="bill과의체팅방" name="{{ username }}" size="100"/><br/>
+        <!--    <input id="room-name-submit" type="button" value="Enter"/>-->
+
+        {% for user in users %}
+            <div data="{{ user }}">{{ user }}</div>
+        {% endfor %}
+
+    </div>
+    <script>
+        const content = document.querySelector('.content');
+
+        function contentFunc(e) {
+            let elem = e.target;
+
+            console.log(elem.getAttribute('data'));
+
+            roomName = elem.getAttribute('data')
+
+            window.location.pathname = '/chat/' + roomName + '/';
+
+        }
+
+
+
+
+        content.addEventListener('click', contentFunc);
+    </script>
+</body>
+</html>
