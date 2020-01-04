@@ -7,3 +7,4 @@ facebook 클론 기획 > 디자인 > 개발 저장소 // 선범의 디자인 소
 
 front-end ( [github](https://github.com/simseonbeom/facebook) )
 
+추합 구름 컨테이너 생성 ( [링크](https://github.com/kindfamily/facebook_goorm) )
