@@ -13,3 +13,10 @@ class Message(models.Model):
 
     def last_10_messages():
         return Message.objects.order_by('-timestamp').all()[:10]
+
+
+class Room_name(models.Model):
+    room_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.room_name
