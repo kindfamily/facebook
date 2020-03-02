@@ -15,18 +15,17 @@
     <div class="inner">
         <div class="left_box">
             <div class="my_name">
+
                 <a href="index.html">
-                   
                     <div class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></div>
                     <span class="name">{{ user_profile.nickname }}</span>
                     <span class="icon--more"></span>
-
                 </a>
             </div>
             <ul class="list">
-                <li class="active"><a href="index.html"><span class="icon icon--news"></span>뉴스피드 <span class="icon--more"></span></a></li>
-                <li><a href="messenger.html"><span class="icon icon--messenger"></span>Messenger <span class="icon--more"></span></a></li>
-                <li><a href="save.html"><span class="icon icon--save"></span>저장됨 <span class="icon--more"></span></a></li>
+                <li class="active"><a href="{% url 'post:post_list' %}"><span class="icon icon--news"></span>뉴스피드 <span class="icon--more"></span></a></li>
+                <li><a href="{% url 'chat:chat_list' %}"><span class="icon icon--messenger"></span>Messenger <span class="icon--more"></span></a></li>
+                <li><a href="{% url 'bookmark_friends:bookmark_friends_list' %}"><span class="icon icon--save"></span>저장됨 <span class="icon--more"></span></a></li>
             </ul>
         </div>
         <section id="contents_container">
@@ -69,15 +68,16 @@
                             <div class="name"><a href="#">{{ post.author.profile.nickname }}</a></div>
                             <div class="time">{{ post.updated_at|timesince }}</div>
                         </div>
-                        <span class="icon--more"></span>
+                        <div class="more" data-name="more">
+                            <span class="icon--more"></span>
+                            <ul class="hidden_menu">
+                                <li><button data-name="friend_request" name="{{ post.author.profile.id }}">친구요청</button></li>
+                                <li>저장하기</li>
+                                <li><a href="">수정</a></li>
+                                <li><input type="button" value="삭제"></li>
+                            </ul>
+                        </div>
                     </div>
-                    <span>
-                        <button data-name="friend_request" name="{{ post.author.profile.id }}">친구요청</button>
-                    </span>
-                    <span><a href="">수정</a></span>
-                    <span><div data-name="bookmark">저장하기</div></span>
-                    <span><input type="submit" value="삭제"></span>
-                    
                 </header>
                 <div class="main_article">
 
@@ -99,6 +99,7 @@
                     {% else %}
                     <div class="like-btn" data-name="like"><span class="icon icon--like-line"></span>좋아요</div>
                     {% endif %}
+
                     <div class="comment-btn"><span class="icon icon--comment-line"></span>댓글</div>
                 </div>
 
@@ -127,8 +128,8 @@
                     </div>
                 </div>
             </article>
-
             {% endfor %}
+
             <input type="hidden" id="page" value="0">
         </section>
 
@@ -139,7 +140,7 @@
             <div class="right_profile">
                 <div class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></div>
                 <div class="detail">
-                    <div class="name"><a href="{{ post.author.profile.nickname }}"></a></div>
+                    <div class="name"><a href="#">{{ post.author.profile.nickname }}</a></div>
                     <div class="message"><span class="icon icon--write-gray"></span>메시지</div>
                 </div>
             </div>
@@ -166,7 +167,6 @@
         </div>
     </div>
 </div>
-
 
 <div id="side_box">
     <ul>
@@ -298,22 +298,15 @@
     </ul>
 </div>
 
-
-
-
-
-
-
-
 {% include "post/script_ajax.html" %}
 {% endblock %}
 
 
 {% block js %}
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="{% static 'js/chart_list.js' %}"></script>
+<!-- <script src="{% static 'js/chart_list.js' %}"></script> -->
 <script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'js/new_post.js' %}"></script>
 {% endblock %}

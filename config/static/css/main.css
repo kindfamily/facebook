@@ -170,7 +170,9 @@
 .create_box #text_field{
     border: none;
     height: 24px;
-    width: 100%;
+    width: 90%;
+    resize: none;
+    font-size: 20px;
 }
 .create_box .text_field .middle{
 
@@ -280,11 +282,43 @@
     height: 32px;
 }
 
-.contents .icon--more {
+.contents .more {
     margin-left: auto;
     cursor: pointer;
+    padding: 10px 0;
+    position: relative;
+
+}
+.contents .more.active .hidden_menu{
+    display: block;
+}
+.contents .hidden_menu{
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    width: 100px;
+    border-radius: 3px;
+    border: 1px solid #dddfe2;
+    display: none;
 }
 
+.contents .hidden_menu > li{
+    padding: 5px 10px;
+    background: #fff;
+    text-align: center;
+    border-bottom: 1px solid rgba(221, 223, 226, 0.57);
+}
+
+.contents .hidden_menu > li:hover{
+    background: #ddd;
+}
+.contents .hidden_menu > li > *{
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    outline:none;
+    cursor: pointer;
+}
 .contents .main_article{
     padding: 5px 20px;
     color: var(--fds-gray-100);

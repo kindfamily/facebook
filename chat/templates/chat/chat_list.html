@@ -1,0 +1,211 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/messenger.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div id="wrapper">
+    <div id="user_list">
+        <header>
+            <div>
+                <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+                <h1>채팅</h1>
+            </div>
+
+            <div>
+                <div class="setting"><svg height="30px" width="30px" viewBox="0 0 36 36"><g id="settings" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="Settings"><polygon id="Bounding-Box" points="0 36 36 36 36 0 0 0"></polygon><path id="Fill-1" d="M18,11.00025 C14.1345,11.00025 11.0005,14.13425 11.0005,18.00025 C11.0005,21.86575 14.1345,24.99975 18,24.99975 C21.8655,24.99975 24.9995,21.86575 24.9995,18.00025 C24.9995,14.13425 21.8655,11.00025 18,11.00025 Z M31,17.42725 L31,18.57325 C31,19.14125 30.679,19.66025 30.171,19.91475 L28.638,20.68075 C28.2975,20.85125 28.0215,21.13725 27.8915,21.49475 C27.7675,21.83575 27.624,22.16775 27.4665,22.49175 C27.3,22.83375 27.286,23.23025 27.406,23.59175 L27.96,25.25225 C28.1395,25.79125 27.999,26.38575 27.5975,26.78725 L26.787,27.59775 C26.3855,27.99925 25.791,28.13975 25.2525,27.95975 L23.595,27.40725 C23.234,27.28725 22.837,27.30125 22.495,27.46775 C22.1705,27.62575 21.837,27.76975 21.4945,27.89425 C21.1355,28.02475 20.849,28.30125 20.6785,28.64275 L19.9145,30.17075 C19.6605,30.67875 19.141,31.00025 18.573,31.00025 L17.427,31.00025 C16.859,31.00025 16.3395,30.67875 16.0855,30.17075 L15.3215,28.64275 C15.151,28.30125 14.864,28.02475 14.5055,27.89425 C14.1625,27.76975 13.83,27.62575 13.505,27.46775 C13.163,27.30125 12.766,27.28725 12.405,27.40725 L10.7475,27.95975 C10.2085,28.13975 9.6145,27.99925 9.213,27.59775 L8.4025,26.78725 C8.0005,26.38575 7.8605,25.79125 8.04,25.25225 L8.594,23.59175 C8.714,23.23025 8.7,22.83375 8.5335,22.49175 C8.376,22.16775 8.2325,21.83575 8.1085,21.49475 C7.9785,21.13725 7.7025,20.85125 7.362,20.68075 L5.829,19.91475 C5.321,19.66025 5,19.14125 5,18.57325 L5,17.42725 C5,16.85875 5.321,16.33925 5.829,16.08525 L7.362,15.31925 C7.7025,15.14875 7.9785,14.86275 8.1085,14.50525 C8.2325,14.16425 8.376,13.83225 8.5335,13.50825 C8.7,13.16625 8.714,12.76975 8.594,12.40825 L8.04,10.74775 C7.8605,10.20875 8.0005,9.61475 8.4025,9.21275 L9.213,8.40275 C9.6145,8.00075 10.2085,7.86025 10.7475,8.04025 L12.405,8.59275 C12.766,8.71275 13.163,8.69875 13.505,8.53225 C13.83,8.37425 14.1625,8.23025 14.5055,8.10575 C14.864,7.97525 15.151,7.69875 15.3215,7.35725 L16.0855,5.82925 C16.3395,5.32125 16.859,5.00025 17.427,5.00025 L18.573,5.00025 C19.141,5.00025 19.6605,5.32125 19.9145,5.82925 L20.6785,7.35725 C20.849,7.69875 21.1355,7.97525 21.4945,8.10575 C21.837,8.23025 22.1705,8.37425 22.495,8.53225 C22.837,8.69875 23.234,8.71275 23.595,8.59275 L25.2525,8.04025 C25.791,7.86025 26.3855,8.00075 26.787,8.40275 L27.5975,9.21275 C27.999,9.61475 28.1395,10.20875 27.96,10.74775 L27.406,12.40825 C27.286,12.76975 27.3,13.16625 27.4665,13.50825 C27.624,13.83225 27.7675,14.16425 27.8915,14.50525 C28.0215,14.86275 28.2975,15.14875 28.638,15.31925 L30.171,16.08525 C30.679,16.33925 31,16.85875 31,17.42725 Z" fill="#000000"></path></g></g></svg></div>
+                <div class="write"><svg height="30px" width="30px" viewBox="0 0 36 36"><g id="compose" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><polygon id="Fill-1" points="0 36 36 36 36 0 0 0"></polygon><path id="Fill-2" d="M15.047,20.26245 L15.9815,17.45445 C16.091,17.12495 16.276,16.82495 16.5215,16.57945 L27.486,5.60195 C28.29,4.79695 29.595,4.79695 30.399,5.60195 C31.2025,6.40645 31.202,7.70895 30.399,8.51345 L19.432,19.49345 C19.186,19.73945 18.886,19.92495 18.556,20.03495 L15.7555,20.96995 C15.318,21.11645 14.901,20.69995 15.047,20.26245 Z M24.005,28.00095 L12.001,28.00095 C9.791,28.00095 8,26.20945 8,23.99995 L8,11.99895 C8,9.78945 9.791,7.99845 12.001,7.99845 L19.0035,7.99745 C19.5555,7.99745 20.0035,8.44545 20.0035,8.99745 C20.0035,9.54995 19.5555,9.99795 19.0035,9.99795 L12.001,9.99845 C10.8965,9.99845 10.0005,10.89395 10.0005,11.99895 L10.0005,23.99995 C10.0005,25.10445 10.8965,26.00045 12.001,26.00045 L24.005,26.00045 C25.1095,26.00045 26.005,25.10445 26.005,23.99995 C26.005,23.99995 26.0045,17.55145 26.0045,16.99895 C26.0045,16.44645 26.4525,15.99845 27.005,15.99845 C27.557,15.99845 28.005,16.44645 28.005,16.99895 C28.005,17.55145 28.0055,23.99995 28.0055,23.99995 C28.0055,26.20945 26.2145,28.00095 24.005,28.00095 Z" fill="#000000"></path></g></svg></div>
+            </div>
+        </header>
+
+        <ul class="scroll_list">
+            <li>
+                <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+                <div>
+                    <div class="name">심심</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
+                <div>
+                    <div class="name">정원봉</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
+                <div>
+                    <div class="name">토끼</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                <div>
+                    <div class="name">곰곰곰</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
+                <div>
+                    <div class="name">이호준</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+                <div>
+                    <div class="name">심심</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
+                <div>
+                    <div class="name">정원봉</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
+                <div>
+                    <div class="name">토끼</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                <div>
+                    <div class="name">곰곰곰</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
+                <div>
+                    <div class="name">이호준</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+                <div>
+                    <div class="name">심심</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
+                <div>
+                    <div class="name">정원봉</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
+                <div>
+                    <div class="name">토끼</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                <div>
+                    <div class="name">곰곰곰</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+            <li>
+                <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
+                <div>
+                    <div class="name">이호준</div>
+                    <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+
+    <div id="time_line">
+        <header>
+            <div>
+                <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+                <div>
+                    <div class="name">심심</div>
+                    <div class="time">1시간</div>
+                </div>
+            </div>
+            <div class="icons">
+                <div class="phone"><svg height="32px" width="32px" viewBox="0 0 36 36"><g id="phone" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><polygon id="Fill-8" points="0 36 36 36 36 0 0 0"></polygon><path id="Fill-11" d="M12.8546683,23.0915802 C10.2003459,20.4371382 8.18827548,17.4933995 7.18895039,14.801598 C6.11677282,11.9134196 6.30082118,9.54827444 7.70754499,8.14106577 C8.38574404,7.46332572 9.22115105,6.9556194 9.80301228,6.64860076 C10.1768605,6.45174482 10.6202062,6.44887101 10.9902201,6.6495587 C12.2608248,7.33735708 14.2542027,9.8624776 14.6055242,11.228016 C14.6980277,11.5867632 14.6266131,11.9694589 14.4094936,12.2774354 L12.8029047,14.5630718 C12.7056083,14.7019726 12.682123,14.8820647 12.7415553,15.0406032 C13.4096892,16.8233229 14.2192144,18.3129141 15.9254961,20.01852 C17.6303399,21.7246049 19.1209399,22.5340612 20.904867,23.2027008 C21.0635129,23.2625718 21.2432476,23.2391024 21.3822424,23.1413929 L23.6205389,21.5679822 C23.9339963,21.3476569 24.313596,21.2868279 24.6572488,21.3696894 C26.1948195,21.7356211 28.7992956,23.6898115 29.3811568,24.9135753 C29.5474713,25.2637011 29.5388441,25.6674713 29.3576715,26.0209499 C29.0993327,26.5267404 28.5534185,27.4875506 27.8018877,28.2395308 C24.2474537,31.7915592 16.8807262,27.1187451 12.8546683,23.0915802" fill="#0099ff"></path></g></svg></div>
+                <div class="facetime"><svg height="32px" width="32px" viewBox="0 0 36 36"><g id="camcorder" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><polygon id="Fill-8" points="0 36 36 36 36 0 0 0"></polygon><path id="original" d="M20,27 L9,27 C6.791,27 5,25.209 5,23 L5,13 C5,10.791 6.791,9 9,9 L20,9 C22.209,9 24,10.791 24,13 L24,23 C24,25.209 22.209,27 20,27 M30.5525,23.3995 L26.829,21.536 C26.321,21.282 26,20.762 26,20.193 L26,15.808 C26,15.2395 26.321,14.719 26.829,14.465 L30.5525,12.6015 C31.218,12.269 32,12.753 32,13.497 L32,22.504 C32,23.2485 31.218,23.732 30.5525,23.3995" fill="#0099ff"></path></g></svg></div>
+                <div class="info"><svg height="32px" width="32px" viewBox="0 0 36 36"><g id="info-circle" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="Group"><polygon id="Fill-8" points="0 36 36 36 36 0 0 0"></polygon><path id="Fill-17" d="M18,10 C16.6195,10 15.5,11.119 15.5,12.5 C15.5,13.881 16.6195,15 18,15 C19.381,15 20.5,13.881 20.5,12.5 C20.5,11.119 19.381,10 18,10 Z M16,25 C16,25.552 16.448,26 17,26 L19,26 C19.552,26 20,25.552 20,25 L20,18 C20,17.448 19.552,17 19,17 L17,17 C16.448,17 16,17.448 16,18 L16,25 Z M18,30 C11.3725,30 6,24.6275 6,18 C6,11.3725 11.3725,6 18,6 C24.6275,6 30,11.3725 30,18 C30,24.6275 24.6275,30 18,30 Z" fill="#0099ff"></path></g></g></svg></div>
+            </div>
+        </header>
+
+        <div id="main_section">
+            <div class="left_box">
+                <div id="feed">
+                    <div>
+                        <div class="from">
+                            <div>번호좀 알려줘</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="to">
+                            <div>010-000-0000 이야~</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="text_field">
+                    <input type="text" id="txt">
+                    <button type="submit" id="btn">전송</button>
+                </div>
+            </div>
+            <div class="right_box">
+                <div class="profile">
+                    <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+                    <div class="name">심심</div>
+                    <div class="time">1시간</div>
+                </div>
+
+                <div class="option">
+                    <div>옵션</div>
+                    <div class="arrow"> < </div>
+                </div>
+                <div class="manage">
+                    <div>관리 및 지원</div>
+                    <div class="arrow"> < </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<!--<script src="js/chart_list.js"></script>-->
+<script src="{% static 'js/messenger.js' %}"></script>
+
+{% endblock %}
