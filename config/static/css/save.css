@@ -1,0 +1,288 @@
+
+
+
+#wrapper {
+    position: relative;
+    top: 52px;
+    width: 1012px;
+    margin: 0 auto;
+    padding-right: 205px;
+    /*background: #000;*/
+}
+
+
+#wrapper .inner {
+    width: 100%;
+    position: relative;
+}
+
+
+#wrapper .inner .left_box {
+    width: 180px;
+    height: 500px;
+    /*background: tomato;*/
+    position: fixed;
+    /*left: 344px;*/
+    top: 52px;
+    font-size: 13px;
+}
+
+.left_box .my_name {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+.left_box .icon--more {
+    margin-left: auto;
+    display: none;
+}
+
+
+.left_box .my_name > a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.left_box .list {
+
+}
+
+.left_box .list > li {
+    padding: 5px 10px;
+    margin-bottom: 2px;
+    border: 1px solid transparent;
+}
+
+.left_box .list > li > a {
+    display: flex;
+    align-items: center;
+}
+
+.left_box .list > li.active {
+    background: var(--fds-gray-00);
+    border: 1px solid #dddfe2;
+}
+
+.left_box .list > li.active .icon--more {
+    display: block;
+}
+
+.left_box .list > li:hover {
+    background: var(--fds-gray-00);
+    border: 1px solid #dddfe2;
+}
+
+.left_box .list > li:hover .icon--more {
+    display: block;
+}
+
+
+/*---------//left_box--------*/
+
+
+
+#side_box {
+    width: 205px;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 52px;
+    /*background: dodgerblue;*/
+    border-left: 1px solid #dadde1;
+}
+
+
+
+#side_box > ul{
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#side_box > ul > li{
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+    position: relative;
+    top: 0;
+}
+
+#side_box > ul > li:hover{
+    background: #dddfe2;
+    box-shadow: 1px 0 0 #eaebed inset;
+}
+
+#side_box .light{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgb(66, 183, 42);
+    margin-left: auto;
+}
+
+#side_box .profile_img{
+    width: 32px;
+    height: 32px;
+
+}
+/*---------//side_box*/
+
+
+
+#contents_container{
+    width: 820px;
+    /*height: 3000px;*/
+    /*background: #000;*/
+    margin-left: auto;
+
+}
+
+#contents_container > div.hidden{
+    display: none;
+}
+
+.contents{
+    background-color: #fff;
+    margin-bottom: 10px;
+    /*height: 300px;*/
+    border: 1px solid #dddfe2;
+    border-radius: 3px;
+    display: flex;
+    padding: 10px 20px;
+    position: relative;
+
+}
+
+
+.contents .thumbnail{
+    width: 128px;
+    min-width:128px;
+    height: 128px;
+    overflow:hidden;
+    margin-right: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contents .thumbnail img{
+    /*transform:scale(0.5);*/
+    max-width:250px;
+}
+
+
+
+.contents h1{
+    font-size: 16px;
+    color: #385898;
+    padding-top: 10px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.contents p{
+    font-size: 12px;
+    color:#90949c;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width:600px;
+}
+
+
+.contents .close{
+    font-size: 20px;
+    font-weight: bold;
+    color:#ddd;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+
+
+#friends .contents{
+    align-items: center;
+}
+#friends .contents h1{
+    padding-top: 0;
+    margin-bottom: 0;
+}
+
+
+#friends .contents .thumbnail{
+    width: 75px;
+    min-width:75px;
+    height: 75px;
+    overflow:hidden;
+    margin-right: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#friends .contents .thumbnail img{
+    /*transform:scale(0.5);*/
+    max-width:150px;
+}
+
+
+
+
+.contents:hover .close{
+    display: block;
+}
+
+
+.contents .right_contents{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.contents .btn_container{
+    /*display: flex;*/
+    margin-left: auto;
+    font-size: 12px;
+
+
+
+}
+.contents .btn_container > button{
+    border-radius: 2px;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.contents .btn_container .agree{
+    background: #4267b2;
+    border: 1px solid #4267b2;
+    color: #fff;
+
+
+
+}
+.contents .btn_container .delete{
+    background: #ccd0d5;
+    border: 1px solid #eff1f4;
+    color: #4b4f56;
+
+}
+
+
+
+
+
+
+
+
+
+

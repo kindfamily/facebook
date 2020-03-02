@@ -1,0 +1,319 @@
+{% extends "post/layout.html" %}
+{% load static %}
+{% load post_extras %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div id="wrapper">
+    <div class="inner">
+        <div class="left_box">
+            <div class="my_name">
+                <a href="index.html">
+                   
+                    <div class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></div>
+                    <span class="name">{{ user_profile.nickname }}</span>
+                    <span class="icon--more"></span>
+
+                </a>
+            </div>
+            <ul class="list">
+                <li class="active"><a href="index.html"><span class="icon icon--news"></span>뉴스피드 <span class="icon--more"></span></a></li>
+                <li><a href="messenger.html"><span class="icon icon--messenger"></span>Messenger <span class="icon--more"></span></a></li>
+                <li><a href="save.html"><span class="icon icon--save"></span>저장됨 <span class="icon--more"></span></a></li>
+            </ul>
+        </div>
+        <section id="contents_container">
+            <article class="create_box">
+                <h2 class="title">게시물 만들기</h2>
+                <div class="text_field">
+
+                    <form action="">
+
+                        <div class="top">
+                            <div class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></div>
+<!--                                <div><span>심심님, 무슨 생각을 하고 계신가요?</span></div>-->
+                            <p>
+                                  <textarea name="content" id="text_field" cols="50" rows="5" data-name="add" placeholder="{{ user_profile.nickname }}님, 무슨 생각을 하고 계신가요?"></textarea>
+                            </p>
+                        </div>
+                        <div class="middle">
+                            <canvas id="imageCanvas" width="0" height="0"></canvas>
+                        </div>
+                        <div class="bottom">
+                            <input type="file" name="photo" id="id_photo" required="required">
+
+                            <div class="import-btn">
+                                <label for="id_photo" id="photo_label"><span class="icon icon--picture"></span>사진/동영상</label>
+                            </div>
+                        </div>
+                        <div class="submit">
+                            <input type="submit" id="submitBtn" value="게시" disabled>
+                        </div>
+
+                    </form>
+                </div>
+            </article>
+            {% for post in posts %}
+            <article class="contents">
+                <header>
+                    <div class="profile_container">
+                        <div class="profile_img"><img src="{{ post.author.profile.picture.url }}" alt=""></div>
+                        <div>
+                            <div class="name"><a href="#">{{ post.author.profile.nickname }}</a></div>
+                            <div class="time">{{ post.updated_at|timesince }}</div>
+                        </div>
+                        <span class="icon--more"></span>
+                    </div>
+                    <span>
+                        <button data-name="friend_request" name="{{ post.author.profile.id }}">친구요청</button>
+                    </span>
+                    <span><a href="">수정</a></span>
+                    <span><div data-name="bookmark">저장하기</div></span>
+                    <span><input type="submit" value="삭제"></span>
+                    
+                </header>
+                <div class="main_article">
+
+                    {{ post|add_link|safe|linebreaksbr }}
+
+                </div>
+                <div class="img_section">
+                    <img src="{{ post.photo.url }}" alt="">
+                </div>
+
+                <div class="ajax_field">
+                    <div class="like">좋아요 <span class="like_count" id="like-count-{{ post.id }}">{{ post.like_count }}</span>개</div>
+                    <div class="comment">댓글 <span class="comment_count">1</span>개</div>
+                </div>
+
+                <div class="btn_container">
+                    {% if user in post.like_user_set.all %}
+                    <div class="like-btn activate" data-name="like"><span class="icon icon--like-line"></span>좋아요</div>
+                    {% else %}
+                    <div class="like-btn" data-name="like"><span class="icon icon--like-line"></span>좋아요</div>
+                    {% endif %}
+                    <div class="comment-btn"><span class="icon icon--comment-line"></span>댓글</div>
+                </div>
+
+                <div class="comment_container">
+                    {% for comment in post.comment_set.all %}
+                    <div class="id" id="comment{{ comment.id }}">
+                        <div class="profile_img"><img src="{{ comment.author.profile.picture.url }}" alt=""></div>
+                        <div class="comment_field">
+                            <div class="text_container">
+                                <div class="name"><a href="#">{{ comment.author.profile.nickname }}</a></div>
+                                <div class="text_field">{{ comment.content }}</div>
+                                {% if user == comment.author %}
+                                    <input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% endfor %}
+
+                <div class="comment_input">
+                    <div class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></div>
+                    <div class="input_container">
+                        <label for="comment"></label>
+                        <input type="text" id="comment37" placeholder="댓글을 입력하세요..">
+                    </div>
+                </div>
+            </article>
+
+            {% endfor %}
+            <input type="hidden" id="page" value="0">
+        </section>
+
+        <div class="right_box">
+
+            <header class="title">내 프로필</header>
+
+            <div class="right_profile">
+                <div class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></div>
+                <div class="detail">
+                    <div class="name"><a href="{{ post.author.profile.nickname }}"></a></div>
+                    <div class="message"><span class="icon icon--write-gray"></span>메시지</div>
+                </div>
+            </div>
+
+            <div class="btn_container">
+                <div class="active" data-name="chart01">좋아요</div>
+                <div data-name="chart02">게시물</div>
+                <div data-name="chart03">차트3</div>
+            </div>
+
+            <div class="chart_container">
+                <div class="chart01 active">
+                    <canvas id="chart01" height="300"></canvas>
+                </div>
+
+                <div class="chart02">
+                    <canvas id="chart02"></canvas>
+                </div>
+
+                <div class="chart03">
+                    <canvas id="chart03"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="side_box">
+    <ul>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+            <div class="name">착한곰</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+            <div class="name">착한호랑이</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
+            <div class="name">착한토끼</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
+            <div class="name">정원봉</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
+            <div class="name">이호준</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+            <div class="name">착한곰</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+            <div class="name">착한호랑이</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
+            <div class="name">착한토끼</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
+            <div class="name">정원봉</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
+            <div class="name">이호준</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+            <div class="name">착한곰</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+            <div class="name">착한호랑이</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
+            <div class="name">착한토끼</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
+            <div class="name">정원봉</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
+            <div class="name">이호준</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+            <div class="name">착한곰</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+            <div class="name">착한호랑이</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
+            <div class="name">착한토끼</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
+            <div class="name">정원봉</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
+            <div class="name">이호준</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+            <div class="name">착한곰</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
+            <div class="name">착한호랑이</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
+            <div class="name">착한토끼</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
+            <div class="name">정원봉</div>
+            <div class="light"></div>
+        </li>
+        <li>
+            <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
+            <div class="name">이호준</div>
+            <div class="light"></div>
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+{% include "post/script_ajax.html" %}
+{% endblock %}
+
+
+{% block js %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="{% static 'js/chart_list.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/new_post.js' %}"></script>
+{% endblock %}

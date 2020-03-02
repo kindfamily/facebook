@@ -1,0 +1,278 @@
+
+
+
+
+
+#wrapper{
+    height: 100vh;
+    display:flex;
+}
+
+#user_list{
+    padding-top: 42px;
+    flex: 1;
+    /*background: red;*/
+    border-right: 1px solid #ddd;
+    overflow:hidden;
+}
+
+#user_list > header{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    align-items: center;
+}
+
+#user_list h1{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#user_list > header > div{
+    display: flex;
+    align-items: center;
+}
+
+#user_list > header > div:nth-child(2) > div{
+    border-radius: 50%;
+    background: #dfdfdf;
+    padding: 3px;
+}
+#user_list .setting{
+    margin-right: 10px;
+}
+
+#user_list .scroll_list{
+    height: 93%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #fff;
+
+}
+
+#user_list .scroll_list .profile_img{
+    width: 50px;
+    height: 50px;
+}
+
+#user_list .scroll_list > li{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#user_list .scroll_list > li:hover{
+    background: #dfdfdf;
+}
+#user_list .scroll_list > li .name{
+    font-size: 15px;
+    color: #000;
+    margin-bottom: 10px;
+}
+#user_list .scroll_list > li .contents{
+    font-size: 13px;
+    color: #999;
+}
+
+
+
+#time_line{
+    flex: 3;
+    /*background: orange;*/
+    padding-top: 42px;
+    overflow:hidden;
+}
+
+#time_line header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .10);
+}
+#time_line header > div{
+    display: flex;
+    align-items: center;
+}
+
+#time_line header .profile_img{
+    width: 40px;
+    height: 40px;
+}
+
+
+#time_line .name{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+#time_line .time{
+    font-size: 12px;
+    color: #999;
+}
+
+
+#time_line .icons > div:nth-child(2){
+    margin: 0 10px;
+}
+
+
+#main_section{
+    display: flex;
+    height: 93%;
+
+}
+
+
+#main_section .left_box{
+    flex: 3;
+    background: #fff;
+    position: relative;
+}
+
+.left_box .text_field{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    /*background: blue;*/
+    width: 90%;
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+#feed{
+    height: 92%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 10px 20px;
+
+}
+
+#feed > div{
+    margin-bottom: 20px;
+}
+
+#feed > div > div > div{
+    padding: 10px;
+    border-radius: 30px;
+
+}
+#feed > div .from{
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+#feed > div .from > div{
+    background: #ddd;
+}
+#feed > div .to > div{
+    background: #0099ff;
+}
+#feed > div .to{
+    display: flex;
+    justify-content: flex-end;
+    color: #fff;
+
+}
+
+.left_box .text_field input{
+    width: 80%;
+    height: 70%;
+    border-radius: 10px;
+    border: none;
+    background: #ddd;
+}
+
+
+.left_box .text_field button{
+    border-radius: 3px;
+    background: #0099ff;
+    color: #fff;
+    font-size: 13px;
+    border: none;
+    padding: 5px;
+    margin-left: auto;
+}
+
+
+
+#main_section .right_box{
+    flex: 1;
+    background: #fff;
+    border-left: 1px solid #ddd;
+}
+
+.right_box .profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.right_box .profile .profile_img{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+
+
+.right_box .profile .name{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.right_box .profile .time{
+    font-size: 14px;
+    color: #999;
+}
+
+.right_box .option{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+}
+.right_box .manage{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.right_box .option:hover,
+.right_box .manage:hover{
+    background: #dfdfdf;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
