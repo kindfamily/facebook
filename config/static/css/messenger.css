@@ -3,7 +3,7 @@
 
 
 
-#wrapper{
+#m-wrapper{
     height: 100vh;
     display:flex;
 }
@@ -130,13 +130,13 @@
 }
 
 
-#main_section .left_box{
+#main_section .m-left_box{
     flex: 3;
     background: #fff;
     position: relative;
 }
 
-.left_box .text_field{
+.m-left_box .text_field{
     position: absolute;
     left: 0;
     bottom: 0;
@@ -185,7 +185,7 @@
 
 }
 
-.left_box .text_field input{
+.m-left_box .text_field input{
     width: 80%;
     height: 70%;
     border-radius: 10px;
@@ -194,7 +194,7 @@
 }
 
 
-.left_box .text_field button{
+.m-left_box .text_field button{
     border-radius: 3px;
     background: #0099ff;
     color: #fff;
@@ -267,6 +267,45 @@
 
 
 
+
+
+
+@media screen and (max-width:1240px){
+    #m-wrapper .right_box{
+        display: none;
+    }
+
+
+
+
+}
+
+
+
+
+@media screen and (max-width:800px){
+    #m-wrapper .right_box{
+        display: none;
+    }
+
+    .scroll_list .contents{
+        display: none;
+    }
+
+    #user_list h1{
+        font-size: 15px;
+    }
+    .setting{
+        display: none;
+    }
+
+    .write{
+        display: none;
+    }
+
+
+
+}
 
 
 

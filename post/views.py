@@ -7,8 +7,8 @@ from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import PostForm, CommentForm
-
-from .models import Post, Like, Comment,Tag
+from .models import Post, Like, Comment,Tag, Bookmark
+from accounts.models import Friend
 from django.db.models import Count
 
 
@@ -26,8 +26,7 @@ def my_post_list(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     user_profile = user.profile
     
-    target_user = get_user_model().objects.filter(id=user.id).select_related('profile') \
-        .prefetch_related('profile__follower_user__from_user', 'profile__follow_user__to_user')
+    target_user = get_user_model().objects.filter(id=user.id).select_related('profile')
         
     post_list = user.post_set.all()
     
@@ -45,15 +44,9 @@ def post_list(request, tag=None):
     tag_all = Tag.objects.annotate(num_post=Count('post')).order_by('-num_post')
     
     if tag:
-        post_list = Post.objects.filter(tag_set__name__iexact=tag) \
-            .prefetch_related('tag_set', 'like_user_set__profile', 'comment_set__author__profile',
-                              'author__profile__follower_user', 'author__profile__follower_user__from_user') \
-            .select_related('author__profile')
+        post_list = Post.objects.filter(tag_set__name__iexact=tag)
     else:
-        post_list = Post.objects.all() \
-            .prefetch_related('tag_set', 'like_user_set__profile', 'comment_set__author__profile',
-                              'author__profile__follower_user', 'author__profile__follower_user__from_user') \
-            .select_related('author__profile')
+        post_list = Post.objects.all()
 
     comment_form = CommentForm()
     
@@ -78,24 +71,25 @@ def post_list(request, tag=None):
         tag_clean = ''.join(e for e in tag if e.isalnum())
         return redirect('post:post_search', tag_clean)
     
-    
-    
-    
+
+
+
+
     if request.user.is_authenticated:
         username = request.user
+
+        friends = username.friends.all()
+
         user = get_object_or_404(get_user_model(), username=username)
         user_profile = user.profile
-        
-        follow_set = request.user.profile.get_following
-        follow_post_list = Post.objects.filter(author__profile__in=follow_set)
         
         return render(request, 'post/post_list.html', {
             'user_profile': user_profile,
             'tag': tag,
             'posts': posts,
-            'follow_post_list': follow_post_list,
             'comment_form': comment_form,
             'tag_all': tag_all,
+            'friends': friends,
         })
     else:
         return render(request, 'post/post_list.html', {
@@ -178,11 +172,14 @@ def post_bookmark(request):
     if not post_bookmark_created:
         post_bookmark.delete()
         message = "북마크 취소"
+        is_bookmarked = 'N'
     else:
-        message = "북마크"
+        message = "북마크 시작!"
+        is_bookmarked = 'Y'
 
     context = {'bookmark_count': post.bookmark_count,
-               'message': message}
+                'is_bookmarked': is_bookmarked,
+                'message': message}
 
     return HttpResponse(json.dumps(context), content_type="application/json")    
     

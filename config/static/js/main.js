@@ -13,14 +13,15 @@ window.addEventListener('DOMContentLoaded',function(){
         const leftBox = document.querySelector('.left_box');
         const createBox = document.querySelector('.create_box');
         const rightBox = document.querySelector('.right_box');
-        const chart_btn = document.querySelector('.right_box .btn_container');
+        // const chartAll = document.querySelectorAll('.right_box .chart_container > div');
+        // const chart_btn = document.querySelector('.right_box .btn_container');
         const btnAll = document.querySelectorAll('.right_box .btn_container > div');
-        const chartAll = document.querySelectorAll('.right_box .chart_container > div');
         const bell = document.querySelector('#header .bell');
         const noticeBoard = document.querySelector('#header .notice');
         const sideBox = document.querySelectorAll('#side_box > ul > li');
         const detailCard = document.querySelector('#detail_card');
         const submit  = document.querySelector( "#submitBtn" );
+        const textField = document.querySelector('#text_field');
         const more  = document.querySelector( ".contents .more" );
 
 
@@ -46,7 +47,7 @@ window.addEventListener('DOMContentLoaded',function(){
             let elem = e.target;
             e.stopPropagation();
 
-            console.log(elem);
+            
 
             while (!elem.getAttribute('data-name')) {
                 elem = elem.parentNode;
@@ -123,6 +124,8 @@ window.addEventListener('DOMContentLoaded',function(){
                 console.log('ddd');
                 submit.disabled = false;
                 submit.parentNode.style.display = 'block';
+                textField.style.height = '100px';
+
 
             }else{
 
@@ -137,35 +140,35 @@ window.addEventListener('DOMContentLoaded',function(){
 
 
 
-
-        function chartFunc(e){
-            console.log(e.target.dataset);
-
-            let elem = e.target;
-
-
-            for(let i=0;i<3;i++){
-                btnAll[i].classList.remove('active');
-                chartAll[i].classList.remove('active');
-            }
-
-            elem.classList.add('active');
-
-            if( elem.dataset.name === 'chart01'){
-                console.log('1번');
-                chartAll[0].classList.add('active');
-
-            }else if( elem.dataset.name === 'chart02'){
-                console.log('2번');
-                chartAll[1].classList.add('active');
-
-            }else if( elem.dataset.name === 'chart03'){
-                console.log('3번');
-                chartAll[2].classList.add('active');
-            }
-
-
-        }
+        //
+        // function chartFunc(e){
+        //     console.log(e.target.dataset);
+        //
+        //     let elem = e.target;
+        //
+        //
+        //     for(let i=0;i<3;i++){
+        //         btnAll[i].classList.remove('active');
+        //         chartAll[i].classList.remove('active');
+        //     }
+        //
+        //     elem.classList.add('active');
+        //
+        //     if( elem.dataset.name === 'chart01'){
+        //         console.log('1번');
+        //         chartAll[0].classList.add('active');
+        //
+        //     }else if( elem.dataset.name === 'chart02'){
+        //         console.log('2번');
+        //         chartAll[1].classList.add('active');
+        //
+        //     }else if( elem.dataset.name === 'chart03'){
+        //         console.log('3번');
+        //         chartAll[2].classList.add('active');
+        //     }
+        //
+        //
+        // }
 
 
         function noticeFunc(e){
@@ -285,7 +288,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
         });
 
-        chart_btn.addEventListener('click',chartFunc);
+        // chart_btn.addEventListener('click',chartFunc);
         bell.addEventListener('click',noticeFunc);
         feed.addEventListener('click',delegation);
 
@@ -294,6 +297,8 @@ window.addEventListener('DOMContentLoaded',function(){
         window.addEventListener('resize',resizeFunc);
 
         document.body.addEventListener('click',(e)=>{
+            textField.style.height = '24px';
+
             submit.parentNode.style.display = 'none';
             submit.disabled = true;
 

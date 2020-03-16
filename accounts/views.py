@@ -115,7 +115,10 @@ def create_friend_request(request):
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 
-def accept_friend_request(request, friend_request_id):
+def accept_friend_request(request):
+
+    friend_request_id = request.POST.get('pk', None)
+
     # 요청 
     friend_request = FriendRequest.objects.get(pk=friend_request_id)
 

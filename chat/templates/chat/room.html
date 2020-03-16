@@ -2,11 +2,8 @@
 {% load static %}
 
 {% block head %}
-
 <link rel="stylesheet" href="{% static 'css/messenger.css' %}">
-
 {% endblock %}
-
 {% block content %}
 <div id="m-wrapper">
     <div id="user_list">
@@ -25,18 +22,17 @@
         <ul class="scroll_list">
             
             {% for friend in friends %}
-                {% if friend.room %}
-                    <li name="{{ friend.room.id  }}"  >
-                        <a href="/chat/{{ friend.room.id }}/">
-                            <div class="profile_img"><img src="{{ friend.user.profile.picture.url }}" alt=""></div>
-                            <div>
-                                <div class="name">{{ friend.user }}</div>
-                                <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
-                            </div>
-                        </a>
-                    </li>
-                {% endif %}
+                <li name="{{ friend.room.id  }}"  >
+                    <a href="/chat/{{ friend.room.id }}/">
+                        <div class="profile_img"><img src="{{ friend.user.profile.picture.url }}" alt=""></div>
+                        <div>
+                            <div class="name">{{ friend.user }}</div>
+                            <div class="contents">새로운 facebook친구에게 인사해보세요.</div>
+                        </div>
+                    </a>
+                </li>
             {% endfor %}
+            
         </ul>
     </div>
 
@@ -44,9 +40,9 @@
     <div id="time_line">
         <header>
             <div>
-                <div class="profile_img"><img src="" alt=""></div>
+                <div class="profile_img"><img src="{{ friend_user.profile.picture.url }}" alt=""></div>
                 <div>
-                    <div class="name">심심 </div>
+                    <div class="name">{{friend_user.profile.nickname}}</div>
                     <div class="time">1시간</div>
                 </div>
             </div>
@@ -73,8 +69,11 @@
 
                 </div>
                 <div class="text_field">
-                    <input type="text" id="txt">
-                    <button type="submit" id="btn">전송</button>
+                    <input type="hidden" id="user_id" value="{{current_user.id}}" />
+                    <input type="hidden" id="user_name" value="{{user_profile.nickname}}" />
+                    <input type="hidden" id="room_id" value="{{room.id}}" />
+                    <input type="text" id="txt_message">
+                    <button type="submit" id="btn_send">전송</button>
                 </div>
             </div>
             <div class="right_box">
@@ -98,6 +97,8 @@
 
     </div>
 </div>
+
+
 {% endblock %}
 
 {% block js %}

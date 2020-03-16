@@ -3,7 +3,7 @@ from .models import Room, Message
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ['room_name']
+    list_display = ['id', 'room_name']
     list_display_links = ['room_name']
 
 @admin.register(Message)

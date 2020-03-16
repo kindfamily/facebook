@@ -503,6 +503,23 @@ body {
 }
 
 
+.icon--messenger--black {
+    display:inline-block;
+    background: url('../imgs/bg02.png') no-repeat 0 -13px;
+    width: 24px;
+    height: 24px;
+    opacity: .6;
+}
+
+.icon--chart--black {
+    display:inline-block;
+    background: url('../imgs/bg06.png') no-repeat -104px -2440px;
+    width: 28px;
+    height: 17px;
+    opacity: .6;
+}
+
+
 .icon--facebook-white {
     display: inline-block;
     background: url('../imgs/bg03.png') no-repeat 0 -33px;
@@ -785,3 +802,57 @@ body {
 /*---------//header--------*/
 
 
+
+
+
+
+@media screen and (max-width:1240px){
+    #wrapper .left_box{
+        display: none;
+    }
+
+    #wrapper .right_box{
+        display: none;
+    }
+
+    #side_box{
+        display: none;
+    }
+
+
+
+    #header .inner {
+        padding-right: 0;
+    }
+
+
+    #header .inner{
+        width: 90%;
+    }
+
+    #user_list .scroll_list .profile_img{
+        display:none;
+    }
+
+
+}
+
+@media screen and (max-width:800px){
+
+    #header .inner .left{
+        display:none;
+    }
+
+    #header .inner .right{
+        width: 100%;
+        justify-content: space-between;
+    }
+    #header .inner .right .question{
+        margin-right: 20px;
+    }
+    #header .inner .right > div:after{
+        display: none;
+    }
+
+
+}

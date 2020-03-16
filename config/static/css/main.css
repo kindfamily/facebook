@@ -150,7 +150,7 @@
 
 .create_box .text_field .top {
     display: flex;
-    height: 30px;
+    /*height: 30px;*/
     /*background: red;*/
     align-items: center;
     color: #90949c;
@@ -172,7 +172,7 @@
     height: 24px;
     width: 90%;
     resize: none;
-    font-size: 20px;
+    font-size: 15px;
 }
 .create_box .text_field .middle{
 
@@ -623,28 +623,12 @@
 
 
 
+
+
 @media screen and (max-width:1240px){
-    #wrapper .left_box{
-        display: none;
-    }
-
-    #wrapper .right_box{
-        display: none;
-    }
-
-    #side_box{
-        display: none;
-    }
-
-
-
-    #header .inner {
-        padding-right: 0;
-    }
-
 
     #wrapper {
-        padding-right: 0;
+        padding-right: 0 ;
         width: 90%;
     }
 
@@ -652,30 +636,6 @@
         position: static;
         left: 0;
         margin: 0 auto;
-    }
-
-    #header .inner{
-        width: 90%;
-    }
-
-
-}
-
-@media screen and (max-width:800px){
-
-    #header .inner .left{
-        display:none;
-    }
-
-    #header .inner .right{
-        width: 100%;
-        justify-content: space-between;
-    }
-    #header .inner .right .question{
-        margin-right: 20px;
-    }
-    #header .inner .right > div:after{
-        display: none;
     }
 
 

@@ -154,7 +154,7 @@
                     <div class="right_contents">
                         <h1 class="heading">{{ friend_request.from_user.username }}님</h1>
                         <div class="btn_container">
-                            <button class="agree">확인</button>
+                            <button class="agree" data-name="friend_accept" name="{{ friend_request.id }}">수락</button>
                             <button class="delete">삭제</button>
                         </div>
                     </div>
@@ -304,6 +304,37 @@
 
         console.log(elem);
 
+        while (!elem.getAttribute('data-name')){
+            elem = elem.parentNode;
+            
+            if (elem.nodeName === 'BODY'){
+                elem = null;
+                return;
+            }
+        }
+
+        if (elem.matches('[data-name="friend_accept"]')){
+            console.log("친구수락");
+            
+            const request_id = elem.getAttribute('name');
+            console.log(request_id);
+
+            $.ajax({
+                type: "POST",
+                url: "{% url 'accounts:accept_friend_request' %}",
+                data: {
+                    'pk': request_id,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                dataType: "json",
+                success: function(response){
+                    console.log("성공");
+                },
+                error: function(request, status, error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            })
+        }
     }
 
 
@@ -312,9 +343,9 @@
     
 
 </script>
-
 {% endblock %}
 
 {% block js %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="{% static 'js/save.js' %}"></script>
 {% endblock %}

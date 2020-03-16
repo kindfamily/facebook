@@ -1,43 +1,37 @@
-{% extends "accounts/layout.html" %}
+
 
 {% load static %}
 
-{% block head %}
-
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
 <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 
-{% endblock%}
 
+</head>
+<body>
 
-{% block content %}
-<div id="main_container">
+    <section id="container">
 
-        <div class="form_container">
-
-            <div class="form">
+        <div id="signup_section">
+            <h1 class="logo"><a href="#" class="icon--main-logo"></a>회원가입</h1>
+            <form action="" method="post" enctype="multipart/form-data">
                 
-                <form action="" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                        {{ form.as_p }}
-                    <input class="submit_btn" type="submit" value="가입">
-                    
-                </form>
+                {% csrf_token %}
 
-            </div>
+                {{ form.as_p }}
 
-            <div class="bottom_box">
-                <div>
-                    <span>아이디가 있다면</span><a href="{% url 'accounts:login' %}">로그인</a>
+                <div class="signup_section">
+                    <input id="submitBtn" class="submit_btn" type="submit" value="가입">
                 </div>
-            </div>
-
-
+                
+                
+            </form>
         </div>
 
-    </div>
 
-
-
-
-
-{% endblock %}
+    </section>
+</body>
+</html>

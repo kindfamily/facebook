@@ -1,56 +1,55 @@
-{% extends "accounts/layout.html" %}
+
+
 {% load static %}
 
-
-{% block head %}
-
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
-{% endblock%}
+
+</head>
+<body>
 
 
 
-{% block content %}
-
-<div id="main_container">
-
-        <div class="form_container">
-
-            <div class="form">
+    <section id="container">
 
 
-                <h1 class="sprite_insta_big_logo title"></h1>
+            
+
+            <div id="login_section">
+                <h1 class="logo"><a href="#" class="icon--main-logo"></a>FACEBOOK</h1>
 
                 <form method="POST" action="{% url 'accounts:login' %}">
                     {% csrf_token %}
                     
-                    <p class="login_user_name">
-                        <label for="id_username">사용자명:</label>
-                        <input id="{{ form.username.id_for_label }}" maxlength="15" name="{{ form.username.html_name }}">
-                    </p>
+                    <div class="id_section">
+                        <div><label for="id_username">사용자명:</label></div>
+                        <div><input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}"></div>
+                    </div>
 
-                    <p class="login_user_password">
-                        <label for="id_username">비밀번호:</label>
-                        <input id="{{ form.password.id_for_label }}" maxlength="15"  name="{{ form.password.html_name }}" type="password" >
-                    </p>
+                    <div class="pw_section">
+                        <div><label for="pw_field">비밀번호:</label></div>
+                        <div><input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" ></div>
+                        
+                    </div>
 
-                    <input class="submit_btn" type="submit" value="로그인">
+                    <input class="submit_btn" id="submitBtn" type="submit" value="SIGN IN">
+
+                    <div class="signup"><a href="{% url 'accounts:signup' %}">아직도 회원이 아니신가요?</a></div>
                 </form>
-
-
-
-            </div>
-
-            <div class="bottom_box">
-                <div>
-                    <span>아이디가 없으신가요?</span><a href="{% url 'accounts:signup' %}">회원가입</a>
-                </div>
             </div>
 
 
-        </div>
+            
 
-    </div>
+        </section>
+
+
 
 {% include "accounts/script_ajax_signupcheck.html" %}
-{% endblock %}
+</body>
+</html>

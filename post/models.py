@@ -27,12 +27,12 @@ class Post(models.Model):
     tag_set = models.ManyToManyField('Tag', blank=True)
     like_user_set = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                            blank=True,
-                                           related_name='like_user_set',
-                                           through='Like')  # post.like_set 으로 접근 가능
+                                           related_name='like_post_set',
+                                           through='Like')  
     bookmark_user_set = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                            blank=True,
-                                           related_name='bookmark_user_set',
-                                           through='Bookmark')  # post.like_set 으로 접근 가능
+                                           related_name='bookmark_post_set',
+                                           through='Bookmark') 
     
     
     
@@ -58,9 +58,6 @@ class Post(models.Model):
     @property
     def bookmark_count(self):
         return self.bookmark_user_set.count()
-    
-    
-    
 
     def __str__(self):
         return self.content

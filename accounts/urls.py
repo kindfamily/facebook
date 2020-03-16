@@ -11,5 +11,5 @@ urlpatterns = [
     path('follow/', follow, name='follow'),
 
     path('create_friend_request/', create_friend_request, name='create_friend_request'),
-    path('accept_friend_request/<int:friend_request_id>', accept_friend_request, name='accept_friend_request'),
+    path('accept_friend_request/', accept_friend_request, name='accept_friend_request'),
 ]

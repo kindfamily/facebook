@@ -14,6 +14,9 @@ class LikeInline(admin.TabularInline):
     
 class CommentInline(admin.TabularInline):
     model = Comment
+
+class BookmarkInline(admin.TabularInline):
+    model = Bookmark
         
        
 @admin.register(Post)
@@ -21,7 +24,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ['id', 'author', 'nickname', 'content', 'created_at']
     list_display_links = ['author', 'nickname', 'content']
     form = PostForm
-    inlines = [LikeInline, CommentInline]
+    inlines = [LikeInline, CommentInline, BookmarkInline]
     
     def nickname(request, post):
         return post.author.profile.nickname
