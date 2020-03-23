@@ -30,8 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'debug_toolbar',
     'django.contrib.sites',
+    
     'allauth',
     'allauth.account',
+    
     'accounts',
     'post',
     'bookmark_friends',

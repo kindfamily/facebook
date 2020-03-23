@@ -23,9 +23,10 @@
                 <div class="left">
                     <h1 class="icon icon--facebook-white"><a href="{% url 'post:post_list' %}"></a></h1>
     
-                    <div class="search_container">
-                        <form action="">
-                            <input type="text" id="search_box" placeholder="검색">
+                    <div class="search_container" >
+                        <form action="{% url "post:post_list" %}" method="post">
+                            {% csrf_token %}
+                            <input type="text" name="tag" id="search_box" placeholder="검색" required>
                             <button type="submit"><span class="icon--search-black"></span></button>
                         </form>
                     </div>

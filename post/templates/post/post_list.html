@@ -91,9 +91,15 @@
                                     <!-- 로그인한 사용자가 해당글을 저장안했으면 저장하기 -->
                                         <li class="bookmark" data-name="bookmark" name="{{ post.id }}">저장하기</li>
                                     {% endif %}
-
-                                    <li><a href="edit.html">수정</a></li>
-                                    <li><input type="button" value="삭제"></li>
+                                    {% if post.author == user %}     
+                                    <li><a href="{% url 'post:post_edit' post.pk %}">수정</a></li>
+                                    <li>
+                                        <form action="{% url 'post:post_delete' post.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="submit" class="post-delete" value="삭제">
+                                        </form>
+                                     </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
@@ -145,6 +151,7 @@
                         <div class="input_container">
                             <label for="comment"></label>
                             <input type="text" id="comment37" placeholder="댓글을 입력하세요..">
+                            <button class="send" data-name="send"><span class="icon--send"></span></button>
                         </div>
                     </div>
                 </article>

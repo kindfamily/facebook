@@ -427,15 +427,22 @@
     border: 1px solid #ccd0d5;
     border-radius: 30px;
     text-align: center;
+    position: relative;
 }
 
-.contents .comment_input .input_container input{
-    width: 90%;
-    height: 100%;
-    border: none;
-    background: none;
-    outline:none;
+/*.contents .comment_input .input_container input:focus ~ button{*/
+/*    display: block;*/
+/*}*/
 
+.contents .comment_input .input_container button{
+    background:transparent;
+    border: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform:translateY(-50%);
+    cursor: pointer;
+    /*display: none;*/
 }
 
 /*---------//contents--------*/

@@ -409,6 +409,12 @@ body {
     margin-right: 10px;
 }
 
+.icon--send {
+    display: inline-block;
+    background: url('../imgs/bg04.png') no-repeat -433px -246px;
+    width: 18px;
+    height: 16px;
+}
 
 .icon--main-logo {
     display: inline-block;
