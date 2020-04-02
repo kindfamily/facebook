@@ -14,31 +14,29 @@
 <div id="wrapper">
     <div class="inner">
         <div class="left_box">
-            <div class="my_name">
-
-                
+                {% if user_profile %}
+                <div class="my_name">
                     <div class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></div>
                     <span class="name">{{ user_profile.nickname }}</span>
                     <span class="icon--more"></span>
-                
-            </div>
-            <ul class="list">
-                {% if user_profile %}
-
-                <li class="active"><a href="{% url 'post:post_list' %}"><span class="icon icon--news"></span>뉴스피드 <span class="icon--more"></span></a></li>
-                <li><a href="{% url 'chat:chat_list' %}"><span class="icon icon--messenger"></span>Messenger <span class="icon--more"></span></a></li>
-                <li><a href="{% url 'bookmark_friends:bookmark_friends_list' %}"><span class="icon icon--save"></span>저장됨 <span class="icon--more"></span></a></li>
-
+                </div>
+                <ul class="list">
+                    <li class="active"><a href="{% url 'post:post_list' %}"><span class="icon icon--news"></span>뉴스피드 <span class="icon--more"></span></a></li>
+                    <li><a href="{% url 'chat:chat_list' %}"><span class="icon icon--messenger"></span>Messenger <span class="icon--more"></span></a></li>
+                    <li><a href="{% url 'bookmark_friends:bookmark_friends_list' %}"><span class="icon icon--save"></span>저장됨 <span class="icon--more"></span></a></li>
+                </ul>
                 {% else %}
-
-                <li class="active"><a href="{% url 'accounts:login' %}"><span class="icon icon--news"></span>뉴스피드 <span class="icon--more"></span></a></li>
-                <li><a href="{% url 'accounts:login' %}"><span class="icon icon--messenger"></span>Messenger <span class="icon--more"></span></a></li>
-                <li><a href="{% url 'accounts:login' %}"><span class="icon icon--save"></span>저장됨 <span class="icon--more"></span></a></li>
-
+                <div class="my_name">         
+                    <div class="profile_img"><img src="{% static 'imgs/noun_User.png' %}" alt=""></div>
+                    <span class="name">{{ user_profile.nickname }}</span>
+                    <span class="icon--more"></span>
+                </div>
+                <ul class="list">
+                    <li class="active"><a href="{% url 'accounts:login' %}"><span class="icon icon--news"></span>뉴스피드 <span class="icon--more"></span></a></li>
+                    <li><a href="{% url 'accounts:login' %}"><span class="icon icon--messenger"></span>Messenger <span class="icon--more"></span></a></li>
+                    <li><a href="{% url 'accounts:login' %}"><span class="icon icon--save"></span>저장됨 <span class="icon--more"></span></a></li>
+                </ul>
                 {% endif %}
-
-
-            </ul>
         </div>
         <section id="contents_container">
             <article class="create_box">
@@ -71,7 +69,6 @@
             </article>
             
             <div class="contents_wrapper">
-                
                 {% for post in posts %}
                 <article class="contents">
                     <header>
@@ -157,13 +154,9 @@
                                     <!-- 요기 2 -->
                                     <input type="button" class="delete" data-name="comment_delete" value="X" name="{{ comment.id }}">
                                     {% endif %}
-                                </div>
-                                
-
-                                
+                                </div>                 
                             </div>
                             {% endfor %}
-                            
                         </div>
                     </div>
 
@@ -178,15 +171,11 @@
                                     <span class="icon--send" name="{{post.id}}" data-name="comment"></span>
                                 </button>
                             </div>
-                            
-                            
-                        
                         
                         {% else %}
                         <div class="profile_img"><img src="{{ post.author.profile.picture.url }}" alt=""></div>
                         
                             {{ comment_form }}    
-                        
                         
                         <button class="send">
                             <span class="icon--send" name="{{post.id}}" data-name="comment" onclick="alert('댓글을 작성하려면 로그인이 필요합니다')">게시</span>
@@ -207,6 +196,7 @@
 
             <header class="title">내 프로필</header>
 
+            {% if user_profile %}
             <div class="right_profile">
                 <div class="profile_img"><img src="{{ user_profile.user.profile.picture.url }}" alt=""></div>
                 <div class="detail">
@@ -214,6 +204,15 @@
                     <div class="message"><span class="icon icon--write-gray"></span>메시지</div>
                 </div>
             </div>
+            {% else %}
+            <div class="right_profile">
+                <div class="profile_img"><img src="{% static 'imgs/noun_User.png' %}" alt=""></div>
+                <div class="detail">
+                    <div class="name"><a href="#">{{ user_profile.user.profile.ncikname }}</a></div>
+                    <div class="message"><span class="icon icon--write-gray"></span>메시지</div>
+                </div>
+            </div>
+            {% endif %}
 
         </div>
     </div>

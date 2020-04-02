@@ -36,11 +36,8 @@
     
                     {% if user_profile %}
                         <div><a href="{% url 'accounts:logout' %}" class="logout">로그아웃</a></div>    
-                    {% else %}
-                        <div><a href="{% url 'accounts:login' %}" class="logout">로그인</a></div>    
-                    {% endif %}
-    
-                    <div class="my_name"><span class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></span><a
+                        <div class="my_name"><span class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></span><a href="#">{{ user_profile.nickname }}</a></div>
+                        <div class="my_name"><span class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></span><a
                             href="#">{{ user_profile.nickname }}</a></div>
                     <div class="home">홈</div>
                     <div class="people"><a href="{% url 'bookmark_friends:bookmark_friends_list' %}"><span class="icon icon--people-black"></span></a></div>
@@ -147,6 +144,118 @@
                     <div><a href="{% url 'chat:chat_list' %}"><span class="icon icon--messenger--black"></span></a></div>
                     <div><a href="#"><span class="icon icon--chart--black"></span></a></div>
                     <div class="question"><a href="http://www.kind-family.com"><span class="icon icon--question-black"></span></a></div>
+                    {% else %}
+                        <div><a href="{% url 'accounts:login' %}" class="logout">로그인</a></div>    
+                        <div class="my_name"><span class="profile_img"><img src="{% static 'imgs/noun_User.png' %}" alt=""></span><a
+                            href="#">{{ user_profile.nickname }}</a></div>
+                    <div class="home">홈</div>
+                    <div class="people"><a href="#"><span class="icon icon--people-black"></span></a></div>
+                    <div class="bell">
+                        <span class="icon icon--bell-black"></span>
+                        <div class="notice">
+                            <div class="icon--arrow-top"></div>
+                            <h3>알림</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                                        <div>
+                                            <div><span class="name">kindbear</span> <span>님도 자신의 상태에 댓글을 달았습니다.</span></div>
+                                            <div class="time">1시간</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                                        <div>
+                                            <div><span class="name">kindbear</span> <span>님도 자신의 상태에 댓글을 달았습니다.</span></div>
+                                            <div class="time">1시간</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                                        <div>
+                                            <div><span class="name">kindbear</span> <span>님도 자신의 상태에 댓글을 달았습니다.</span></div>
+                                            <div class="time">1시간</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                                        <div>
+                                            <div><span class="name">kindbear</span> <span>님도 자신의 상태에 댓글을 달았습니다.</span></div>
+                                            <div class="time">1시간</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                                        <div>
+                                            <div><span class="name">kindbear</span> <span>님도 자신의 상태에 댓글을 달았습니다.</span></div>
+                                            <div class="time">1시간</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                                        <div>
+                                            <div><span class="name">kindbear</span> <span>님도 자신의 상태에 댓글을 달았습니다.</span></div>
+                                            <div class="time">1시간</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                                        <div>
+                                            <div><span class="name">kindbear</span> <span>님도 자신의 상태에 댓글을 달았습니다.</span></div>
+                                            <div class="time">1시간</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                                        <div>
+                                            <div><span class="name">kindbear</span> <span>님도 자신의 상태에 댓글을 달았습니다.</span></div>
+                                            <div class="time">1시간</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                                        <div>
+                                            <div><span class="name">kindbear</span> <span>님도 자신의 상태에 댓글을 달았습니다.</span></div>
+                                            <div class="time">1시간</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
+                                        <div>
+                                            <div><span class="name">kindbear</span> <span>님도 자신의 상태에 댓글을 달았습니다.</span></div>
+                                            <div class="time">1시간</div>
+                                        </div>
+                                    </a>
+                                </li>
+    
+                            </ul>
+                        </div>
+                    </div>
+                    <div><a href="#"><span class="icon icon--messenger--black"></span></a></div>
+                    <div><a href="#"><span class="icon icon--chart--black"></span></a></div>
+                    <div class="question"><a href="http://www.kind-family.com"><span class="icon icon--question-black"></span></a></div>
+                    {% endif %}
+    
+         
                 </div>
     
             </div>
