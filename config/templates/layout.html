@@ -36,6 +36,8 @@
     
                     {% if user_profile %}
                         <div><a href="{% url 'accounts:logout' %}" class="logout">로그아웃</a></div>    
+                    {% else %}
+                        <div><a href="{% url 'accounts:login' %}" class="logout">로그인</a></div>    
                     {% endif %}
     
                     <div class="my_name"><span class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></span><a
