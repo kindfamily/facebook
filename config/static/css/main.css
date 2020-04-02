@@ -312,7 +312,9 @@
 .contents .hidden_menu > li:hover{
     background: #ddd;
 }
-.contents .hidden_menu > li > *{
+/* 선범이가 3월 26일 변경한 부분 */
+.contents .hidden_menu > li > *,
+.contents .hidden_menu > li > form > *{
     background: transparent;
     border: none;
     font-size: 12px;
@@ -384,10 +386,15 @@
     align-items:  center;
 }
 
-
+/* 선범이가 3월 26일 변경한 부분 */
 .contents .comment_container .delete{
     margin-left: auto;
     cursor: pointer;
+    border:none;
+    background:none;
+    font-size: 15px;
+    color: #385898;
+
 }
 
 
@@ -429,7 +436,14 @@
     text-align: center;
     position: relative;
 }
-
+/* 선범이가 3월 26일에 수정한 부분  */
+.contents .comment_input .input_container input{
+    width: 90%;
+    height:100%;
+    border:none;
+    background:none;
+    outline:none;
+}
 /*.contents .comment_input .input_container input:focus ~ button{*/
 /*    display: block;*/
 /*}*/

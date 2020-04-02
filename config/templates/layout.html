@@ -41,7 +41,7 @@
                     <div class="my_name"><span class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></span><a
                             href="#">{{ user_profile.nickname }}</a></div>
                     <div class="home">홈</div>
-                    <div class="people"><a href="save.html"><span class="icon icon--people-black"></span></a></div>
+                    <div class="people"><a href="{% url 'bookmark_friends:bookmark_friends_list' %}"><span class="icon icon--people-black"></span></a></div>
                     <div class="bell">
                         <span class="icon icon--bell-black"></span>
                         <div class="notice">
@@ -142,7 +142,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div><a href="messenger.html"><span class="icon icon--messenger--black"></span></a></div>
+                    <div><a href="{% url 'chat:chat_list' %}"><span class="icon icon--messenger--black"></span></a></div>
                     <div><a href="#"><span class="icon icon--chart--black"></span></a></div>
                     <div class="question"><a href="http://www.kind-family.com"><span class="icon icon--question-black"></span></a></div>
                 </div>

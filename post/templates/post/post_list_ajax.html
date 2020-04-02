@@ -12,17 +12,27 @@
             <div class="more" data-name="more">
                 <span class="icon--more"></span>
                 <ul class="hidden_menu">
-                    <li><button  data-name="friend_request" name="{{ post.author.profile.id }}">친구요청</button></li>
+                    {% if user in post.user.friend_requests %}
+                    <li><button class="friend_request" data-name="friend_request" name="{{ post.author.profile.id }}">{{ user }}친구요청완료</button></li>
+                    {% else %}
+                    <li><button class="friend_request" data-name="friend_request" name="{{ post.author.profile.id }}">{{ user }}친구요청</button></li>
+                    {% endif %}
                     
                     {% if user in post.bookmark_user_set.all %}
                         <li class="bookmark" data-name="bookmark" name="{{ post.id }}">저장됨</li>
                     {% else %}
-                    <!-- 로그인한 사용자가 해당글을 저장안했으면 저장하기 -->
+                    <!-- 로그인한 사용자가 해당글을 저장안했으면 기 -->
                         <li class="bookmark" data-name="bookmark" name="{{ post.id }}">저장하기</li>
                     {% endif %}
-
-                    <li><a href="edit.html">수정</a></li>
-                    <li><input type="button" value="삭제"></li>
+                    {% if post.author == user %}     
+                    <li><a href="{% url 'post:post_edit' post.pk %}">수정</a></li>
+                    <li>
+                        <form action="{% url 'post:post_delete' post.pk %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" class="post-delete" value="삭제">
+                        </form>
+                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -37,44 +47,68 @@
     </div>
 
     <div class="ajax_field">
-        <div class="like">좋아요 <span class="like_count" id="like-count-{{ post.id }}">{{ post.like_count }}</span>개</div>
-        <div class="comment">댓글 <span class="comment_count">1</span>개</div>
+        <div class="like" >좋아요 <span class="like_count" id="like-count-{{ post.id }}">{{ post.like_count }}</span>개</div>
+        <div class="comment">댓글 <span class="comment_count-{{ post.id }}">{{ post.comment_set.count }}</span>개</div>
     </div>
 
     <div class="btn_container">
         {% if user in post.like_user_set.all %}
-        <div class="like-btn activate" data-name="like"><span class="icon icon--like-line"></span>좋아요</div>
+        <div class="like-btn active" name={{ post.id }} data-name="heartbeat"><span class="icon icon--like-line"></span>좋아요</div>
         {% else %}
-        <div class="like-btn" data-name="like"><span class="icon icon--like-line"></span>좋아요</div>
+        <div class="like-btn" name={{ post.id }} data-name="heartbeat"><span class="icon icon--like-line"></span>좋아요</div>
         {% endif %}
         <div class="comment-btn"><span class="icon icon--comment-line"></span>댓글</div>
     </div>
 
     <div class="comment_container">
+        <div class="comment" id="comment-list-ajax-post{{post.id}}">
+            {% for comment in post.comment_set.all %}
+            <div class="comment-detail" id="comment{{ comment.id }}">
+                <div class="id">
+                    <div class="profile_img"><img src="{{ comment.author.profile.picture.url }}" alt=""></div>
+                    <div class="comment_field">
+                        <div class="text_container">
+                            <div class="name"><a href="#">"{{ comment.author.profile.nickname }}</a></div>
+                            <div class="text_field">{{comment.content}}</div>
 
-        {% for comment in post.comment_set.all %}
-        <div class="id" id="comment{{ comment.id }}">
-            <div class="profile_img"><img src="{{ comment.author.profile.picture.url }}" alt=""></div>
-            <div class="comment_field">
-                <div class="text_container">
-                    <div class="name"><a href="#">{{ comment.author.profile.nickname }}</a></div>
-                    <div class="text_field">{{ comment.content }}</div>
-                    {% if user == comment.author %}
-                        <input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}">
-                    {% endif %}
+                            {% if user == comment.author %}
+                            <input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}">
+                            {% endif %}
+                            <div class="time">{{ comment.created_at|timesince }}</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        {% endfor %}
+                
 
+                
+            </div>
+            {% endfor %}
+            
+        </div>
     </div>
 
-    <div class="comment_input">
-        <div class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></div>
-        <div class="input_container">
-            <label for="comment"></label>
-            <input type="text" id="comment37" placeholder="댓글을 입력하세요..">
-        </div>
+    <div class="comment_input" id="add-comment-post{{post.id}}">
+        {% if user.is_authenticated %}
+        <div class="profile_img"><img src="{{ post.author.profile.picture.url }}" alt=""></div>
+        
+
+            {{ comment_form }}    
+        
+        
+        <button class="send">
+            <span class="icon-send" name="{{post.id}}" data-name="comment">게시</span>
+        </button>
+        {% else %}
+        <div class="profile_img"><img src="{{ post.author.profile.picture.url }}" alt=""></div>
+        
+            {{ comment_form }}    
+        
+        
+        <button class="send">
+            <span class="icon-send" name="{{post.id}}" data-name="comment" onclick="alert('댓글을 작성하려면 로그인이 필요합니다')">게시</span>
+        </button>
+        
+        {% endif%}
     </div>
 </article>
 

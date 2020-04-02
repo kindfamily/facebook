@@ -75,7 +75,7 @@ def create_friend_request(request):
     user = request.user
     # 타겟유저 가져오기
     target_user = get_object_or_404(get_user_model(), pk=user_id)
-    # 프랜드리퀘슽, 만들기 > model에서 확인 shell 이용
+    # 프랜드리퀘스트, 만들기 > model에서 확인 shell 이용
     
     try:
         user.friend_requests.create(from_user=user, to_user=target_user)

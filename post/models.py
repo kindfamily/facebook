@@ -4,6 +4,8 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 import re
 
+from accounts.models import *
+
 
 def photo_path(instance, filename):
     from time import gmtime, strftime
@@ -25,6 +27,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tag_set = models.ManyToManyField('Tag', blank=True)
+
     like_user_set = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                            blank=True,
                                            related_name='like_post_set',
@@ -32,10 +35,12 @@ class Post(models.Model):
     bookmark_user_set = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                            blank=True,
                                            related_name='bookmark_post_set',
-                                           through='Bookmark') 
-    
-    
-    
+                                           through='Bookmark')
+
+    comment_user_set = models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                           blank=True,
+                                           related_name='comment_post_set',
+                                           through='Comment')
 
     class Meta:
         ordering = ['-created_at']
@@ -58,6 +63,10 @@ class Post(models.Model):
     @property
     def bookmark_count(self):
         return self.bookmark_user_set.count()
+
+    @property
+    def comment_count(self):
+        return self.comment_user_set.count()
 
     def __str__(self):
         return self.content
@@ -95,7 +104,7 @@ class Bookmark(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comment_set')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.CharField(max_length=40)
     created_at = models.DateTimeField(auto_now_add=True)

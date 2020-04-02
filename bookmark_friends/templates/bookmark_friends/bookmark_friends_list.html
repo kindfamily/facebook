@@ -24,125 +24,24 @@
         <section id="contents_container">
 
             <div id="save" class="">
+                {% for post in post_list %}
+                    {% for bookmark_user in post.bookmark_user_set.all %}
+                        {% if user == bookmark_user.profile.user %}
+                            <article class="contents">
+                                    
+                                <div class="thumbnail"><img src="{{ post.photo.url }}" alt=""></div>
+                                <div>
+                                    <h1 class="heading">{{ post.author.username }}님의 글입니다 </h1>
+                                    <p class="description">
+                                        {{ post.content }}
+                                    </p>
+                                </div>
+                                
+                            </article>
 
-                <article class="contents">
-                    <div class="thumbnail"><img src="imgs/thumb/thumb01.jpg" alt=""></div>
-                    <div>
-                        <h1 class="heading">이호준님</h1>
-                        <p class="description">
-                            특히 이 교육기부 바우처에 함께해주신 제주코딩베이스캠프 운영진(유준모 (Junmo Yoo), 이범재)님과 카인드패밀리(정원봉, 심심 (심선범)), 인프런의 이형주 대표님에게 감사에 말씀을 올립니다.
-                            <br>
-                            <br>
-                            앞으로도 제주의 ICT 미래성장동력 확보, 청년의 일자리 창출과 취업문제 해결, 청소년이 지역의 한계를 뛰어넘어 ICT 진로직업을 보다 쉽게 찾을 수 있도록 노력하겠습니다.
-                            감사합니다.
-                        </p>
-                    </div>
-                    <div class="close" data-name="close">x</div>
-                </article>
-
-
-                <article class="contents">
-                    <div class="thumbnail"><img src="imgs/thumb/thumb02.jpg" alt=""></div>
-                    <div>
-                        <h1 class="heading">심심님</h1>
-                        <p class="description">
-                            귀여운 나의 반려견 멍뭉이~
-                        </p>
-                    </div>
-                    <div class="close">x</div>
-                </article>
-
-                <article class="contents">
-                    <div class="thumbnail"><img src="imgs/thumb/thumb03.jpg" alt=""></div>
-                    <div>
-                        <h1 class="heading">정원봉님</h1>
-                        <p class="description">
-                            내 멍뭉이도 엄청 귀엽다 ~~~~~
-                        </p>
-                    </div>
-                    <div class="close">x</div>
-                </article>
-
-                <article class="contents">
-                    <div class="thumbnail"><img src="imgs/thumb/thumb04.jpg" alt=""></div>
-                    <div>
-                        <h1 class="heading">이호준님</h1>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, cumque.
-                        </p>
-                    </div>
-                    <div class="close">x</div>
-                </article>
-
-                <article class="contents">
-                    <div class="thumbnail"><img src="imgs/thumb/thumb05.jpg" alt=""></div>
-                    <div>
-                        <h1 class="heading">유준모님</h1>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium assumenda dicta ducimus iste sequi voluptatum!
-                        </p>
-                    </div>
-                    <div class="close">x</div>
-                </article>
-
-                <article class="contents">
-                    <div class="thumbnail"><img src="imgs/thumb/thumb01.jpg" alt=""></div>
-                    <div>
-                        <h1 class="heading">이호준님</h1>
-                        <p class="description">
-                            특히 이 교육기부 바우처에 함께해주신 제주코딩베이스캠프 운영진(유준모 (Junmo Yoo), 이범재)님과 카인드패밀리(정원봉, 심심 (심선범)), 인프런의 이형주 대표님에게 감사에 말씀을 올립니다.
-                            <br>
-                            <br>
-                            앞으로도 제주의 ICT 미래성장동력 확보, 청년의 일자리 창출과 취업문제 해결, 청소년이 지역의 한계를 뛰어넘어 ICT 진로직업을 보다 쉽게 찾을 수 있도록 노력하겠습니다.
-                            감사합니다.
-                        </p>
-                    </div>
-                    <div class="close">x</div>
-                </article>
-
-                <article class="contents">
-                    <div class="thumbnail"><img src="imgs/thumb/thumb02.jpg" alt=""></div>
-                    <div>
-                        <h1 class="heading">심심님</h1>
-                        <p class="description">
-                            귀여운 나의 반려견 멍뭉이~
-                        </p>
-                    </div>
-                    <div class="close">x</div>
-                </article>
-
-                <article class="contents">
-                    <div class="thumbnail"><img src="imgs/thumb/thumb03.jpg" alt=""></div>
-                    <div>
-                        <h1 class="heading">정원봉님</h1>
-                        <p class="description">
-                            내 멍뭉이도 엄청 귀엽다 ~~~~~
-                        </p>
-                    </div>
-                    <div class="close">x</div>
-                </article>
-
-                <article class="contents">
-                    <div class="thumbnail"><img src="imgs/thumb/thumb04.jpg" alt=""></div>
-                    <div>
-                        <h1 class="heading">이호준님</h1>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, cumque.
-                        </p>
-                    </div>
-                    <div class="close">x</div>
-                </article>
-
-                <article class="contents">
-                    <div class="thumbnail"><img src="imgs/thumb/thumb05.jpg" alt=""></div>
-                    <div>
-                        <h1 class="heading">유준모님</h1>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium assumenda dicta ducimus iste sequi voluptatum!
-                        </p>
-                    </div>
-                    <div class="close">x</div>
-                </article>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
 
             </div>
 
@@ -161,6 +60,23 @@
                 </article>
                 {% endfor %}
 
+                {% for friend in friends %}
+
+
+                <article class="contents">
+                    <div class="thumbnail"><img src="{{ friend.user.profile.picture.url }}" alt=""></div>
+                    <div class="right_contents">
+                        <h1 class="heading">{{ friend.user }}님</h1>
+                        <div class="btn_container">
+                            
+                            
+                        </div>
+                    </div>
+                </article>
+
+
+                {% endfor %}
+
             </div>
         </section>
 
@@ -169,131 +85,13 @@
 
 <div id="side_box">
     <ul>
+        {% for friend in friends %}
         <li>
-            <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
-            <div class="name">착한곰</div>
+            <div class="profile_img"><img src="{{ friend.user.profile.picture.url }}" alt=""></div>
+            <div class="name">{{ friend.user }}</div>
             <div class="light"></div>
         </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
-            <div class="name">착한호랑이</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
-            <div class="name">착한토끼</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
-            <div class="name">정원봉</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
-            <div class="name">이호준</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
-            <div class="name">착한곰</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
-            <div class="name">착한호랑이</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
-            <div class="name">착한토끼</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
-            <div class="name">정원봉</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
-            <div class="name">이호준</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
-            <div class="name">착한곰</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
-            <div class="name">착한호랑이</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
-            <div class="name">착한토끼</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
-            <div class="name">정원봉</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
-            <div class="name">이호준</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
-            <div class="name">착한곰</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
-            <div class="name">착한호랑이</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
-            <div class="name">착한토끼</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
-            <div class="name">정원봉</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
-            <div class="name">이호준</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/bear.png" alt=""></div>
-            <div class="name">착한곰</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/tiger.png" alt=""></div>
-            <div class="name">착한호랑이</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/rabbit.png" alt=""></div>
-            <div class="name">착한토끼</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/bong.jpg" alt=""></div>
-            <div class="name">정원봉</div>
-            <div class="light"></div>
-        </li>
-        <li>
-            <div class="profile_img"><img src="imgs/profile/ho.jpg" alt=""></div>
-            <div class="name">이호준</div>
-            <div class="light"></div>
-        </li>
+        {% endfor %}
     </ul>
 </div>
 <script>
@@ -329,6 +127,7 @@
                 dataType: "json",
                 success: function(response){
                     console.log("성공");
+                    location.reload();
                 },
                 error: function(request, status, error){
                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

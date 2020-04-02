@@ -71,18 +71,21 @@ def post_list(request, tag=None):
         tag_clean = ''.join(e for e in tag if e.isalnum())
         return redirect('post:post_search', tag_clean)
     
-
-
-
-
     if request.user.is_authenticated:
         username = request.user
 
         friends = username.friends.all()
+        request_friends = username.friend_requests
 
         user = get_object_or_404(get_user_model(), username=username)
         user_profile = user.profile
-        
+
+        friend_list = user.friends.all()
+        my_friend_user_list = list(map(lambda friend: friend.user, friend_list))
+
+        friend_request_list = user.friend_requests.all()
+        my_friend_request_user_list = list(map(lambda friend_request: friend_request.to_user, friend_request_list))
+
         return render(request, 'post/post_list.html', {
             'user_profile': user_profile,
             'tag': tag,
@@ -90,6 +93,9 @@ def post_list(request, tag=None):
             'comment_form': comment_form,
             'tag_all': tag_all,
             'friends': friends,
+            'request_friends': request_friends,
+            'my_friend_user_list': my_friend_user_list,
+            'my_friend_request_user_list': my_friend_request_user_list,
         })
     else:
         return render(request, 'post/post_list.html', {
@@ -160,6 +166,16 @@ def post_like(request):
 
     return HttpResponse(json.dumps(context), content_type="application/json")
 
+@login_required
+def comment_count(request):
+    pk = request.POST.get('pk', None)
+    post = get_object_or_404(Post, pk=pk)
+
+    context = {'comment_count': post.comment_count}
+
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+
 
 
 @login_required
@@ -225,6 +241,11 @@ def comment_new(request):
                 'comment': comment,   
             })
     return redirect("post:post_list")
+
+
+
+
+
 
 
 @login_required

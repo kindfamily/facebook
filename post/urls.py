@@ -12,6 +12,7 @@ urlpatterns = [
     path('like', post_like, name='post_like'),
     path('bookmark', post_bookmark, name='post_bookmark'),
     path('comment/new', comment_new, name='comment_new'),
+    path('comment/count', comment_count, name='comment_count'),
     path('comment_detail/new', comment_new_detail, name='comment_new_detail'),
     
    

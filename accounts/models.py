@@ -35,8 +35,6 @@ class Profile(models.Model):
                              choices=GENDER_C,
                              default='N')
 
- 
-    
 class Friend(models.Model):
     # 상대방 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, on_delete=models.CASCADE)
