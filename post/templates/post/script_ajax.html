@@ -20,6 +20,8 @@
             }
         }
         
+
+        
         if (elem.matches('[data-name="friend_request"]')){
             console.log("친구요청");
             const user_id = elem.getAttribute('name');
@@ -44,6 +46,12 @@
                 }
             })
         }
+        
+
+
+
+
+
         
         if (elem.matches('[data-name="bookmark"]')){
             console.log('북마크!');
@@ -74,6 +82,22 @@
             });
         }
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if (elem.matches('[data-name="heartbeat"]')){
             console.log('하트!');
             
@@ -99,6 +123,21 @@
             
         }
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if (elem.matches('[data-name="comment"]')){
             console.log('새댓글')
             const pk = elem.getAttribute('name');

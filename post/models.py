@@ -8,7 +8,7 @@ from accounts.models import *
 
 
 def photo_path(instance, filename):
-    from time import gmtime, strftime
+    from time import strftime
     from random import choice
     import string
     arr = [choice(string.ascii_letters) for _ in range(8)]
@@ -37,11 +37,6 @@ class Post(models.Model):
                                            related_name='bookmark_post_set',
                                            through='Bookmark')
 
-    comment_user_set = models.ManyToManyField(settings.AUTH_USER_MODEL,
-                                           blank=True,
-                                           related_name='comment_post_set',
-                                           through='Comment')
-
     class Meta:
         ordering = ['-created_at']
 
@@ -64,10 +59,6 @@ class Post(models.Model):
     def bookmark_count(self):
         return self.bookmark_user_set.count()
 
-    @property
-    def comment_count(self):
-        return self.comment_user_set.count()
-
     def __str__(self):
         return self.content
 
@@ -77,6 +68,8 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+
 
 
 class Like(models.Model):

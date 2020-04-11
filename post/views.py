@@ -2,9 +2,14 @@ import json
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+
+
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+
+from django.http import HttpResponse
+
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import PostForm, CommentForm
 from .models import Post, Like, Comment,Tag, Bookmark
@@ -84,14 +89,21 @@ def post_list(request, tag=None):
         my_friend_user_list = list(map(lambda friend: friend.user, friend_list))
 
         friend_request_list = user.friend_requests.all()
+        
+        # map은 리스트의 요소를 지정된 함수로 처리해주는 함수입니다(map은 원본 리스트를 변경하지 않고 새 리스트를 생성합니다 ...
+        # list(s)는 반복 가능한 자료형 s를 입력받아 리스트로 만들어 돌려주는 함수
+        # 함수를 한줄로 만들어주는 함수 lambda 인자 : 표현식
         my_friend_request_user_list = list(map(lambda friend_request: friend_request.to_user, friend_request_list))
 
         return render(request, 'post/post_list.html', {
             'user_profile': user_profile,
+            
             'tag': tag,
             'posts': posts,
+            
             'comment_form': comment_form,
             'tag_all': tag_all,
+            
             'friends': friends,
             'request_friends': request_friends,
             'my_friend_user_list': my_friend_user_list,
@@ -148,6 +160,19 @@ def post_edit(request, pk):
     })
 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
 @login_required
 @require_POST
 def post_like(request):
@@ -166,14 +191,12 @@ def post_like(request):
 
     return HttpResponse(json.dumps(context), content_type="application/json")
 
-@login_required
-def comment_count(request):
-    pk = request.POST.get('pk', None)
-    post = get_object_or_404(Post, pk=pk)
 
-    context = {'comment_count': post.comment_count}
 
-    return HttpResponse(json.dumps(context), content_type="application/json")
+
+
+
+
 
 
 
@@ -193,11 +216,25 @@ def post_bookmark(request):
         message = "북마크 시작!"
         is_bookmarked = 'Y'
 
-    context = {'bookmark_count': post.bookmark_count,
-                'is_bookmarked': is_bookmarked,
-                'message': message}
+    context = {'is_bookmarked': is_bookmarked,
+               'message': message}
 
-    return HttpResponse(json.dumps(context), content_type="application/json")    
+    return HttpResponse(json.dumps(context), content_type="application/json")  
+
+
+@login_required
+def comment_count(request):
+    pk = request.POST.get('pk', None)
+    post = get_object_or_404(Post, pk=pk)
+
+    context = {'comment_count': post.comment_count}
+
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+
+
+
+  
     
 
 

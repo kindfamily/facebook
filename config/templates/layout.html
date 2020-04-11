@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Facebook</title>
+    
     <link rel="shortcut icon" href="{% static 'imgs/favicon.png' %}">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
@@ -12,7 +13,6 @@
 
     {% block head %}
     {% endblock %}
-
 
 </head>
 <body>
@@ -35,10 +35,8 @@
                 <div class="right">
     
                     {% if user_profile %}
-                        <div><a href="{% url 'accounts:logout' %}" class="logout">로그아웃</a></div>    
-                        <div class="my_name"><span class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></span><a href="#">{{ user_profile.nickname }}</a></div>
-                        <div class="my_name"><span class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></span><a
-                            href="#">{{ user_profile.nickname }}</a></div>
+                    <div><a href="{% url 'accounts:logout' %}" class="logout">로그아웃</a></div>    
+                    <div class="my_name"><span class="profile_img"><img src="{{ user_profile.picture.url }}" alt=""></span><a href="#">{{ user_profile.nickname }}</a></div>
                     <div class="home">홈</div>
                     <div class="people"><a href="{% url 'bookmark_friends:bookmark_friends_list' %}"><span class="icon icon--people-black"></span></a></div>
                     <div class="bell">
@@ -145,9 +143,8 @@
                     <div><a href="#"><span class="icon icon--chart--black"></span></a></div>
                     <div class="question"><a href="http://www.kind-family.com"><span class="icon icon--question-black"></span></a></div>
                     {% else %}
-                        <div><a href="{% url 'accounts:login' %}" class="logout">로그인</a></div>    
-                        <div class="my_name"><span class="profile_img"><img src="{% static 'imgs/noun_User.png' %}" alt=""></span><a
-                            href="#">{{ user_profile.nickname }}</a></div>
+                    <div><a href="{% url 'accounts:login' %}" class="logout">로그인</a></div>    
+                    <div class="my_name"><span class="profile_img"><img src="{% static 'imgs/noun_User.png' %}" alt=""></span><a href="#">{{ user_profile.nickname }}</a></div>
                     <div class="home">홈</div>
                     <div class="people"><a href="#"><span class="icon icon--people-black"></span></a></div>
                     <div class="bell">
