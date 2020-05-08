@@ -5,28 +5,28 @@
     // const side_box = document.querySelector('.side_box');
     const header = document.querySelector('#header');
     const textField = document.querySelector('#text_field');
-    
+
     function delegationFunc(e) {
         let elem = e.target;
-        
+
         console.log(elem);
-        
+
         while (!elem.getAttribute('data-name')){
             elem = elem.parentNode;
-            
+
             if (elem.nodeName === 'BODY'){
                 elem = null;
                 return;
             }
         }
-        
 
-        
+
+
         if (elem.matches('[data-name="friend_request"]')){
             console.log("친구요청");
             const user_id = elem.getAttribute('name');
             console.log(user_id);
-            
+
             $.ajax({
                 type:"POST",
                 url: "{% url 'accounts:create_friend_request' %}",
@@ -37,22 +37,22 @@
                 dataType: "json",
                 success: function(response){
                     console.log('성공');
-                    
+
                     elem.innerHTML = "친구요청중";
-                    
+
                 },
                 error: function(request, status, error){
                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                 }
             })
         }
-        
 
 
 
 
 
-        
+
+
         if (elem.matches('[data-name="bookmark"]')){
             console.log('북마크!');
 
@@ -81,7 +81,7 @@
                 },
             });
         }
-        
+
 
 
 
@@ -100,7 +100,7 @@
 
         if (elem.matches('[data-name="heartbeat"]')){
             console.log('하트!');
-            
+
 
             const pk = elem.getAttribute('name');
             console.log(pk);
@@ -111,7 +111,7 @@
                 data: {'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
                 dataType: "json",
                 success: function (response){
-                    
+
                     const likeCount = document.querySelector('#like-count-'+pk);
                     likeCount.innerHTML = response.like_count;
                 },
@@ -119,10 +119,10 @@
                     // alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                 },
             });
-            
-            
+
+
         }
-        
+
 
 
 
@@ -143,17 +143,17 @@
             const pk = elem.getAttribute('name');
             const content = document.querySelector('#add-comment-post'+pk+'>div>input[type=text]').value;
             console.log(content);
-            
+
             if(content.length > 140) {
                 alert("댓글은 최대 140자 입력 가능합니다. 현재 글자수 :"+content.length);
                 return;
             }
-            
+
             if(content.length == 0) {
                 alert("글자를 하나라도 넣어주세요. 현재 글자수 :"+content.length);
                 return;
             }
-            
+
             $.ajax({
                 type: "POST",
                 url: "{% url 'post:comment_new' %}",
@@ -177,7 +177,7 @@
 
 
         }
-        
+
         if(elem.matches('[data-name="comment_delete"]')){
             const pk = elem.getAttribute('name');
 
@@ -197,7 +197,7 @@
                 },
                 error: function(request, status, error){
                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                } 
+                }
             });
         }
 
@@ -210,11 +210,11 @@
         }
 
 
-        
+
         elem.classList.toggle('active');
     }
-    
-    
+
+
     // function resizefunc(){
     //     // console.log('리사이즈')
     //     if(pageYOffset >= 10){
@@ -224,11 +224,11 @@
     //         }
     //     }
     // }
-    
+
     function scrollfunc(){
         const scrollHeight = pageYOffset + window.innerHeight;
         const documentHeight = document.body.scrollHeight;
-        
+
         // if (pageYOffset >= 10){
         //     header.classList.add('on');
         //     resizefunc();
@@ -242,24 +242,24 @@
         //         side_box.removeAttribute('style');
         //     }
         // }
-        
+
         if(scrollHeight >= documentHeight){
             const page = document.querySelector('#page').value;
-            
+
             console.log(page);
-            
+
             const end_page = {{ posts.paginator.num_pages }}
             if(page > end_page){
                 return;
             }
-            document.querySelector('#page').value = parseInt(page) + 1;
+            document.querySelector('#page').value = parseInt(page) + 1; // Integer타입으로 형 변환
             callMorePostAjax(page);
         }
     }
-    
+
     function callMorePostAjax(page) {
         const end_page = {{ posts.paginator.num_pages }};
-        
+
         if(page > end_page){
             return;
         }
@@ -277,13 +277,13 @@
             }
         });
     }
- 
+
     function addMorePostAjax(data, textStatus, jqXHR) {
     let post = document.querySelector('#post_list_ajax');
-        
+
         post.insertAdjacentHTML("beforeend", data);
-        
-        
+
+
     }
 
 

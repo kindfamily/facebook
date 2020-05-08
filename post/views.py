@@ -2,14 +2,9 @@ import json
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404, redirect, render
-
-
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-
 from django.http import HttpResponse
-
-
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import PostForm, CommentForm
 from .models import Post, Like, Comment,Tag, Bookmark
@@ -97,13 +92,10 @@ def post_list(request, tag=None):
 
         return render(request, 'post/post_list.html', {
             'user_profile': user_profile,
-            
             'tag': tag,
             'posts': posts,
-            
             'comment_form': comment_form,
             'tag_all': tag_all,
-            
             'friends': friends,
             'request_friends': request_friends,
             'my_friend_user_list': my_friend_user_list,
@@ -159,20 +151,6 @@ def post_edit(request, pk):
         'form': form,
     })
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
 @login_required
 @require_POST
 def post_like(request):
@@ -190,16 +168,6 @@ def post_like(request):
                'message': message}
 
     return HttpResponse(json.dumps(context), content_type="application/json")
-
-
-
-
-
-
-
-
-
-
 
 @login_required
 @require_POST
@@ -231,20 +199,6 @@ def comment_count(request):
 
     return HttpResponse(json.dumps(context), content_type="application/json")
 
-
-
-
-  
-    
-
-
-
-
-
-
-
-
-
 @login_required
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -256,12 +210,6 @@ def post_delete(request, pk):
         post.delete()
         # messages.success(request, '삭제완료')
         return redirect('post:post_list')
-
-
-
-
-
-
 
 @login_required
 def comment_new(request):
@@ -279,12 +227,6 @@ def comment_new(request):
             })
     return redirect("post:post_list")
 
-
-
-
-
-
-
 @login_required
 def comment_new_detail(request):
     pk = request.POST.get('pk')
@@ -300,25 +242,6 @@ def comment_new_detail(request):
                 'comment': comment,
             })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @login_required
 def comment_delete(request):
     pk = request.POST.get('pk')
@@ -333,71 +256,3 @@ def comment_delete(request):
         status = 0
         
     return HttpResponse(json.dumps({'message': message, 'status': status, }), content_type="application/json")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
-
-
-
-
-
-
-        
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

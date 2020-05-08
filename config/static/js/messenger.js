@@ -1,12 +1,4 @@
-
-
-
-
-
 window.addEventListener('DOMContentLoaded',function(){
-
-
-
 
     (function(){
         const inputUserId = document.querySelector('#user_id');
@@ -44,7 +36,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
             txtMessage.value = '';
 
-            feed.scrollTop = feed.scrollHeight;
+            feed.scrollTop = feed.scrollHeight; // 받은 메시지가 최하단에 보일수 있도록 처리 
 
             //var chatLog = document.querySelector("#chat-log");
             //chatLog.value = chatLog.value + user_name + ' : ' + message + "\n";

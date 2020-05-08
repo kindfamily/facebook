@@ -9,12 +9,13 @@ class ChatConsumer(WebsocketConsumer):
   	# websocket 연결 시 실행
     def connect(self):
         logger = logging.getLogger(__name__)
-        logger.error('======connect======')
-        logger.error('======self======' + self.__class__.__name__)
+        # logger.error('======connect======')
+        # logger.error('======self======' + self.__class__.__name__)
 
         self.room_id = self.scope['url_route']['kwargs']['room_id']
         self.room_channel_layer_group = self.room_id
 
+        # send 등 과 같은 동기적인 함수를 비동기적으로 사용하기 위해서는 async_to_sync 로 감싸줘야한다
         # self.channel_layer.group_add(self.room_channel_layer_group,self.channel_name)
         async_to_sync(self.channel_layer.group_add)(
             self.room_channel_layer_group,
@@ -42,7 +43,8 @@ class ChatConsumer(WebsocketConsumer):
             self.channel_name
         )
 
-		# 클라이언트로부터 메세지를 받을 시 실행
+	# WebSocket 에게 메세지 receive
+    # 클라이언트로부터 메세지를 받을 시 실행
     def receive(self, text_data):
         User = get_user_model()
 
@@ -74,7 +76,7 @@ class ChatConsumer(WebsocketConsumer):
         async_to_sync(self.channel_layer.group_send)(
             self.room_channel_layer_group,
             {
-                'type': 'chat_message',
+                'type': 'chat_message', # chat_message를 실행 하고 message, user_name, user_id를 파라미터로 던진다 
                 'message': message,
                 'user_name': user_name,
                 'user_id': user_id,

@@ -45,6 +45,11 @@
 
             </div>
 
+
+
+
+
+            
             <div id="friends" class="hidden">
 <!--                    <div class="search_box"></div>-->
                 {% for friend_request in friend_requests %}
@@ -54,7 +59,7 @@
                         <h1 class="heading">{{ friend_request.from_user.username }}님</h1>
                         <div class="btn_container">
                             <button class="agree" data-name="friend_accept" name="{{ friend_request.id }}">수락</button>
-                            <button class="delete">삭제</button>
+                            
                         </div>
                     </div>
                 </article>

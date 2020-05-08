@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded',function () {
                 clear_new_post_form();
             },
             error: function (request, status, error) {
-                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
         });
     }

@@ -26,6 +26,7 @@ class Post(models.Model):
     content = models.CharField(max_length=140, help_text="최대 140자 입력 가능")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
     tag_set = models.ManyToManyField('Tag', blank=True)
 
     like_user_set = models.ManyToManyField(settings.AUTH_USER_MODEL,
@@ -40,6 +41,7 @@ class Post(models.Model):
     class Meta:
         ordering = ['-created_at']
 
+   
     # NOTE: content에서 tags를 추출하여, Tag 객체 가져오기, 신규 태그는 Tag instance 생성, 본인의 tag_set에 등록,
     def tag_save(self):
         tags = re.findall(r'#(\w+)\b', self.content)
@@ -61,6 +63,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.content
+
 
 
 class Tag(models.Model):
@@ -94,6 +97,8 @@ class Bookmark(models.Model):
             ('user', 'post')
         )
         
+
+
 
 
 class Comment(models.Model):

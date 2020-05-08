@@ -79,38 +79,43 @@
                             </div>
                             <div class="more" data-name="more">
                                 <span class="icon--more"></span>
+                                {% if user.is_authenticated %}
                                 <ul class="hidden_menu">
                                     
-                                    {% if user in post.bookmark_user_set.all %}
-                                        <li class="bookmark" data-name="bookmark" name="{{ post.id }}">저장됨</li>
-                                    {% else %}
-                                    <!-- 로그인한 사용자가 해당글을 저장안했으면 저장하기 -->
-                                        <li class="bookmark" data-name="bookmark" name="{{ post.id }}">저장하기</li>
-                                    {% endif %}
+                                    
+
+                                        {% if user in post.bookmark_user_set.all %}
+                                            <li class="bookmark" data-name="bookmark" name="{{ post.id }}">저장됨</li>
+                                        {% else %}
+                                        <!-- 로그인한 사용자가 해당글을 저장안했으면 저장하기 -->
+                                            <li class="bookmark" data-name="bookmark" name="{{ post.id }}">저장하기</li>
+                                        {% endif %}
 
 
-                                    {% if post.author in my_friend_user_list %}
-                                        <!-- 친구관계 -->
-                                    {% elif post.author in my_friend_request_user_list %}
-                                        <li>친구요청중</li>
-                                    {% else %}
-                                        <li><button class="friend_request" data-name="friend_request" name="{{ post.author.profile.user.id }}">친구요청하기</button></li>
-                                    {% endif %}
-                                        
+                                        {% if post.author in my_friend_user_list %}
+                                            <!-- 친구관계 -->
+                                        {% elif post.author in my_friend_request_user_list %}
+                                            <li>친구요청중</li>
+                                        {% else %}
+                                            <li><button class="friend_request" data-name="friend_request" name="{{ post.author.profile.user.id }}">친구요청하기</button></li>
+                                        {% endif %}
+                                            
                                     
 
                                     
-                                    {% if post.author == user %}     
-                                    <li><a href="{% url 'post:post_edit' post.pk %}">수정</a></li>
-                                    <li>
-                                        <form action="{% url 'post:post_delete' post.pk %}" method="post">
-                                            {% csrf_token %}
-                                            <!-- 요기 1 -->
-                                            <input type="submit" class="post-delete" value="삭제">
-                                        </form>
-                                     </li>
-                                    {% endif %}
+                                        {% if post.author == user %}     
+                                        <li><a href="{% url 'post:post_edit' post.pk %}">수정</a></li>
+                                        <li>
+                                            <form action="{% url 'post:post_delete' post.pk %}" method="post">
+                                                {% csrf_token %}
+                                                <!-- 요기 1 -->
+                                                <input type="submit" class="post-delete" value="삭제">
+                                            </form>
+                                        </li>
+                                        {% endif %}
+                                    
                                 </ul>
+                                {% endif %}
                             </div>
                         </div>
                     </header>
